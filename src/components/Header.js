@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 function Header({ history }) {
   const { location: { pathname } } = history;
+  const [searching, setSearching] = useState(false);
+
+  const searchBarRender = (clicked) => {
+    if (clicked === true) {
+      return <SearchBar />;
+    } return null;
+  };
+
+  const handleClickToSearch = () => {
+    if (searching === false) setSearching(true);
+    else setSearching(false);
+  };
+
   switch (pathname) {
   case '/meals':
     return (
@@ -16,11 +30,14 @@ function Header({ history }) {
             alt="Profile Icon"
           />
         </Link>
-        <img
-          data-testid="search-top-btn"
-          src="src/images/searchIcon.svg"
-          alt="search Icon"
-        />
+        <button data-testid="buttonSearch" type="button" onClick={ handleClickToSearch }>
+          <img
+            data-testid="search-top-btn"
+            src="src/images/searchIcon.svg"
+            alt="search Icon"
+          />
+        </button>
+        { searchBarRender(searching) }
       </section>
     );
   case '/drinks':
@@ -34,11 +51,14 @@ function Header({ history }) {
             alt="Profile Icon"
           />
         </Link>
-        <img
-          data-testid="search-top-btn"
-          src="src/images/searchIcon.svg"
-          alt="search Icon"
-        />
+        <button data-testid="buttonSearch" type="button" onClick={ handleClickToSearch }>
+          <img
+            data-testid="search-top-btn"
+            src="src/images/searchIcon.svg"
+            alt="search Icon"
+          />
+        </button>
+        { searchBarRender(searching) }
       </section>
     );
   case '/profile':
