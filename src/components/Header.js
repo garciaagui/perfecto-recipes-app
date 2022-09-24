@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function Header({ history }) {
   const { location: { pathname } } = history;
@@ -8,11 +9,13 @@ function Header({ history }) {
     return (
       <section>
         <h1 data-testid="page-title">Meals</h1>
-        <img
-          data-testid="profile-top-btn"
-          src="src/images/profileIcon.svg"
-          alt="Profile Icon"
-        />
+        <Link to="/profile">
+          <img
+            data-testid="profile-top-btn"
+            src="src/images/profileIcon.svg"
+            alt="Profile Icon"
+          />
+        </Link>
         <img
           data-testid="search-top-btn"
           src="src/images/searchIcon.svg"
@@ -24,11 +27,13 @@ function Header({ history }) {
     return (
       <section>
         <h1 data-testid="page-title">Drinks</h1>
-        <img
-          data-testid="profile-top-btn"
-          src="src/images/profileIcon.svg"
-          alt="Profile Icon"
-        />
+        <Link to="/profile">
+          <img
+            data-testid="profile-top-btn"
+            src="src/images/profileIcon.svg"
+            alt="Profile Icon"
+          />
+        </Link>
         <img
           data-testid="search-top-btn"
           src="src/images/searchIcon.svg"
@@ -40,33 +45,39 @@ function Header({ history }) {
     return (
       <section>
         <h1 data-testid="page-title">Profile</h1>
-        <img
-          data-testid="profile-top-btn"
-          src="src/images/profileIcon.svg"
-          alt="Profile Icon"
-        />
+        <Link to="/profile">
+          <img
+            data-testid="profile-top-btn"
+            src="src/images/profileIcon.svg"
+            alt="Profile Icon"
+          />
+        </Link>
       </section>
     );
   case '/done-recipes':
     return (
       <section>
         <h1 data-testid="page-title">Done Recipes</h1>
-        <img
-          data-testid="profile-top-btn"
-          src="src/images/profileIcon.svg"
-          alt="Profile Icon"
-        />
+        <Link to="/profile">
+          <img
+            data-testid="profile-top-btn"
+            src="src/images/profileIcon.svg"
+            alt="Profile Icon"
+          />
+        </Link>
       </section>
     );
   case '/favorite-recipes':
     return (
       <section>
         <h1 data-testid="page-title">Favorite Recipes</h1>
-        <img
-          data-testid="profile-top-btn"
-          src="src/images/profileIcon.svg"
-          alt="Profile Icon"
-        />
+        <Link to="/profile">
+          <img
+            data-testid="profile-top-btn"
+            src="src/images/profileIcon.svg"
+            alt="Profile Icon"
+          />
+        </Link>
       </section>
     );
   default: return null;

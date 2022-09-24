@@ -5,7 +5,6 @@ import Header from '../components/Header';
 function Profile({ history }) {
   return (
     <div>
-      Profile
       <Header history={ history } />
     </div>
   );

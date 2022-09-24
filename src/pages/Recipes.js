@@ -5,7 +5,6 @@ import Header from '../components/Header';
 function Recipes({ history }) {
   return (
     <div>
-      Recipes
       <Header history={ history } />
     </div>
   );
