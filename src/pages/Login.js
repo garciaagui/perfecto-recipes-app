@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import useValidateLoginBtn from '../hooks/useValidateLoginBtn';
 
-function Login() {
+function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoginBtnDisabled, setIsLoginBtnDisabled] = useState(true);
 
   useValidateLoginBtn(email, password, setIsLoginBtnDisabled);
+
+  const handleSubmit = () => {
+    const { history } = props;
+
+    localStorage.setItem('user', JSON.stringify({ email }));
+    localStorage.setItem('mealsToken', JSON.stringify(1));
+    localStorage.setItem('drinksToken', JSON.stringify(1));
+    history.push('/meals');
+  };
 
   return (
     <form>
@@ -37,13 +47,19 @@ function Login() {
         type="submit"
         data-testid="login-submit-btn"
         disabled={ isLoginBtnDisabled }
-        // onClick={  }
+        onClick={ handleSubmit }
       >
-        Enter
+        Entrar
       </button>
 
     </form>
   );
 }
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Login;
