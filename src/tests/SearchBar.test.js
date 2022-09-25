@@ -30,28 +30,3 @@ it('Verifica se na tela meals o search bar funciona corretamente', () => {
     userEvent.click(buttonSearch);
   }, 1000);
 });
-
-it('Verifica se na tela drinks o search bar funciona corretamente', () => {
-  const { history } = renderWithRouterAndRedux(<App />);
-  history.push('/drinks');
-
-  expect(screen.getByTestId('search-top-btn')).toBeInTheDocument();
-  userEvent.click(screen.getByTestId('search-top-btn'));
-  waitFor(() => {
-    expect(screen.findByTestId('search-input')).toBeInTheDocument();
-    expect(buttonSearch).toBeInTheDocument();
-    expect(screen.findByTestId('ingredient-search-radio')).toBeInTheDocument();
-    expect(screen.findByTestId('name-search-radio')).toBeInTheDocument();
-    expect(screen.findByTestId('first-letter-search-radio')).toBeInTheDocument();
-
-    userEvent.type(screen.findByTestId('search-input'), 'onion');
-    userEvent.click(screen.findByTestId('ingredient-search-radio'));
-    userEvent.click(buttonSearch);
-
-    userEvent.click(screen.findByTestId('name-search-radio'));
-    userEvent.click(buttonSearch);
-
-    userEvent.click(screen.findByTestId('first-letter-search-radio'));
-    userEvent.click(buttonSearch);
-  }, 1000);
-});

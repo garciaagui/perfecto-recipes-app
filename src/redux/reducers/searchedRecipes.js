@@ -1,14 +1,14 @@
 import { SEARCH_FILTER } from '../actions/SearchBarFilter';
 
 const INITIAL_STATE = {
-  recipes: [],
+  recipes: false,
 };
 
 function renderRecipes(state = INITIAL_STATE, action) {
   switch (action.type) {
   case SEARCH_FILTER: return {
     ...state,
-    recipes: [action.payload.data],
+    recipes: action.payload.data,
   };
   default: return state;
   }
