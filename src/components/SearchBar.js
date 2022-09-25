@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterSearchBar } from '../redux/actions/SearchBarFilter';
 
-function SearchBar({ dispatch }) { // ao usar a funçao 'connect' que conecta o componente no redux ele adiciona nas props o dispatch
+function SearchBar({ dispatch, history }) { // ao usar a funçao 'connect' que conecta o componente no redux ele adiciona nas props o dispatch
   const [searchData, setSearchData] = useState({
     searchInput: '',
     searchFilter: '',
@@ -17,7 +17,6 @@ function SearchBar({ dispatch }) { // ao usar a funçao 'connect' que conecta o 
   };
 
   const handleRadioChange = ({ target: { name, id } }) => {
-    console.log(id);
     setSearchData({
       ...searchData,
       [name]: id,
@@ -25,7 +24,8 @@ function SearchBar({ dispatch }) { // ao usar a funçao 'connect' que conecta o 
   };
 
   const handleSearchClick = () => {
-    dispatch(filterSearchBar(searchData));
+    const { location: { pathname } } = history;
+    dispatch(filterSearchBar(searchData, pathname));
   };
 
   return (
@@ -82,6 +82,9 @@ function SearchBar({ dispatch }) { // ao usar a funçao 'connect' que conecta o 
 
 SearchBar.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    location: PropTypes.shape().isRequired,
+  }).isRequired,
 };
 
 export default connect()(SearchBar);

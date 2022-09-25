@@ -9,7 +9,7 @@ function Header({ history }) {
 
   const searchBarRender = (clicked) => {
     if (clicked === true) {
-      return <SearchBar />;
+      return <SearchBar history={ history } />;
     } return null;
   };
 
