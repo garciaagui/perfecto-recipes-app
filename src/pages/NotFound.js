@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 
-function DoneRecipes({ history }) {
+function NotFound({ history }) {
   return (
     <div>
       <Header history={ history } />
+      NotFound
     </div>
   );
 }
 
-DoneRecipes.propTypes = {
+NotFound.propTypes = {
   history: PropTypes.shape().isRequired,
 };
 
-export default DoneRecipes;
+export default NotFound;
