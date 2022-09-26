@@ -25,7 +25,6 @@ export function filterSearchBar(state, pathname) {
     try {
       const response = await fetch(fetchURL);
       const data = await response.json();
-      console.log(data);
       dispatch({
         type: SEARCH_FILTER,
         payload: {
