@@ -12,10 +12,11 @@ function SearchBar({ history, dispatch, recipes }) { // ao usar a funçao 'conne
   useEffect(() => {
     if (recipes !== false) {
       const { location: { pathname } } = history;
-      if (pathname === '/meals' && recipes.meals.length === 1) {
+      if (recipes.meals !== null && pathname === '/meals' && recipes.meals.length === 1) {
         history.push(`${pathname}/${recipes.meals[0].idMeal}`);
       }
-      if (pathname === '/drinks' && recipes.drinks.length === 1) {
+      if (recipes.drinks !== null && pathname === '/drinks'
+      && recipes.drinks.length === 1) {
         history.push(`${pathname}/${recipes.drinks[0].idDrink}`);
       }
     }

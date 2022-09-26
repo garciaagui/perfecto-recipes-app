@@ -22,15 +22,18 @@ export function filterSearchBar(state, pathname) {
   }
 
   return async (dispatch) => {
-    const response = await fetch(fetchURL);
-    const data = await response.json();
-    dispatch({
-      type: SEARCH_FILTER,
-      payload: {
-        data,
-      },
-    });
+    try {
+      const response = await fetch(fetchURL);
+      const data = await response.json();
+      console.log(data);
+      dispatch({
+        type: SEARCH_FILTER,
+        payload: {
+          data,
+        },
+      });
+    } catch (e) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
   };
 }
-
-// if (searchFilter === 'ingredient')
