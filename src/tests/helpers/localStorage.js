@@ -14,4 +14,5 @@ export function clearLocalStorage() {
   localStorage.removeItem('doneRecipes');
   localStorage.removeItem('favoriteRecipes');
   localStorage.removeItem('inProgressRecipes');
+  localStorage.removeItem('mealsToken');
 }
