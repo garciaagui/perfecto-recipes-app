@@ -1,5 +1,4 @@
 export const SEARCH_FILTER = 'SEARCH_FILTER';
-export const OTHER = 'SEARCH_FILTE';
 
 export function filterSearchBar(state, pathname) {
   const { searchInput, searchFilter } = state;
