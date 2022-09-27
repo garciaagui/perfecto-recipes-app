@@ -1,4 +1,4 @@
-import { SEARCH_FILTER } from '../actions/SearchBarFilter';
+import GET_RECIPES from '../actions/types';
 
 const INITIAL_STATE = {
   recipes: false,
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 
 function renderRecipes(state = INITIAL_STATE, action) {
   switch (action.type) {
-  case SEARCH_FILTER: return {
+  case GET_RECIPES: return {
     ...state,
     recipes: action.payload.data,
   };

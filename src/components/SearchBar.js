@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { filterSearchBar } from '../redux/actions/SearchBarFilter';
+import filterSearchBar from '../redux/actions/filterSearchBar';
 
 function SearchBar({ history, dispatch, recipes }) { // ao usar a funçao 'connect' que conecta o componente no redux ele adiciona nas props o dispatch
   const [searchData, setSearchData] = useState({

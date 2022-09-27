@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import MealsX from '../components/MealsX';
+import Meals from '../components/Meals';
 import Drinks from '../components/Drinks';
 import Footer from '../components/Footer';
 
@@ -11,7 +11,7 @@ function Recipes({ history }) {
   return (
     <div>
       <Header history={ history } />
-      { locationValid ? <MealsX history={ history } /> : <Drinks history={ history } /> }
+      { locationValid ? <Meals history={ history } /> : <Drinks history={ history } /> }
       <Footer />
     </div>
   );

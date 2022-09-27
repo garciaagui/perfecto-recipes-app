@@ -1,12 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import useGetFirstRecipes from '../hooks/useGetFirstRecipes';
 
-function Drinks({ recipes }) {
+function Drinks({ recipes, dispatch, history }) {
   const { drinks } = recipes;
+  const { location: { pathname } } = history;
+
+  useGetFirstRecipes(dispatch, pathname);
 
   const renderInMap = (drink, index) => (
-    <div key={ drink.idDrink } data-testid={ `${index}-recipe-card` }>
+    <div
+      key={ drink.idDrink }
+      data-testid={ `${index}-recipe-card` }
+      className="recipe-card"
+    >
       <img
         src={ drink.strDrinkThumb }
         alt={ drink.strDrink }
@@ -21,7 +29,7 @@ function Drinks({ recipes }) {
       .alert('Sorry, we haven\'t found any recipes for these filters.');
   }
 
-  if (drinks !== null && recipes !== false && drinks.length > 1) {
+  if (drinks !== null && drinks !== undefined && recipes !== false && drinks.length > 1) {
     const maxLength = 12;
     const recipesLengthValid = drinks.length > maxLength;
     return (
@@ -43,6 +51,8 @@ const mapStateToProps = (state) => ({
 });
 
 Drinks.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  history: PropTypes.shape().isRequired,
   recipes: PropTypes.bool.isRequired,
 };
 
