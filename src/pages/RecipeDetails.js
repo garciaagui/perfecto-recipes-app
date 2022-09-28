@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { mountRecipeDetailsAPI } from '../redux/actions/RecipesDetailsAPI';
 import { filterIngredients,
   filterIngredientsQuantity } from '../tests/helpers/filterIngredients';
+import getRecommendedRecipes from '../redux/actions/getRecommendedRecipes';
 
 function RecipeDetails({ history, dispatch, recipeDetails }) {
   const [ingredients, setIngredients] = useState([]);
@@ -15,6 +16,7 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
   useEffect(() => {
     if (!recipeDetails.meals && !recipeDetails.drinks) {
       dispatch(mountRecipeDetailsAPI(history));
+      dispatch(getRecommendedRecipes(history));
     } else {
       setIngredients(filterIngredients(recipeDetails));
       setIngredientsQuantity(filterIngredientsQuantity(recipeDetails));
