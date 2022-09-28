@@ -12,19 +12,14 @@ export function mountRecipeDetailsAPI(history) {
     fetchURL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${pathname.slice(toSliceNum)}`;
   }
 
-  console.log(fetchURL);
   return async (dispatch) => {
-    try {
-      const response = await fetch(fetchURL);
-      const data = await response.json();
-      dispatch({
-        type: RECIPE_DETAILS_API,
-        payload: {
-          data,
-        },
-      });
-    } catch (e) {
-      global.alert('erro na api');
-    }
+    const response = await fetch(fetchURL);
+    const data = await response.json();
+    dispatch({
+      type: RECIPE_DETAILS_API,
+      payload: {
+        data,
+      },
+    });
   };
 }
