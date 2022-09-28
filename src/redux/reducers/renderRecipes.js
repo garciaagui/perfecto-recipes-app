@@ -1,4 +1,4 @@
-import GET_RECIPES from '../actions/types';
+import { GET_RECIPES } from '../actions/types';
 
 const INITIAL_STATE = {
   recipes: false,

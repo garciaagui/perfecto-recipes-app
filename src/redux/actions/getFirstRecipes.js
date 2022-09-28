@@ -1,4 +1,4 @@
-import GET_RECIPES from './types';
+import { GET_RECIPES } from './types';
 
 export default function getFirstRecipes(pathname) {
   const recipeDB = (pathname === '/meals') ? 'themealdb' : 'thecocktaildb';

@@ -1,3 +1,2 @@
-const GET_RECIPES = 'GET_RECIPES';
-
-export default GET_RECIPES;
+export const GET_RECIPES = 'GET_RECIPES';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
