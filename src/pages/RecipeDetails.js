@@ -106,7 +106,7 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
       </section>
     );
   }
-  return <h1>Carregando...</h1>;
+  return <h1>Carregando..</h1>;
 }
 
 const mapStateToProps = (state) => ({
