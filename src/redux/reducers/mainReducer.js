@@ -5,7 +5,7 @@ import { GET_RECIPES,
 const INITIAL_STATE = {
   recipes: false,
   categories: [],
-  isCategoryFilterOn: false,
+  selectedCategory: '',
 };
 
 function mainReducer(state = INITIAL_STATE, action) {
@@ -13,12 +13,12 @@ function mainReducer(state = INITIAL_STATE, action) {
   case GET_RECIPES: return {
     ...state,
     recipes: action.payload.data,
-    isCategoryFilterOn: false,
+    selectedCategory: '',
   };
   case GET_RECIPES_BY_CATEGORY: return {
     ...state,
     recipes: action.payload.data,
-    isCategoryFilterOn: !state.isCategoryFilterOn,
+    selectedCategory: action.payload.category,
   };
   case GET_CATEGORIES: return {
     ...state,

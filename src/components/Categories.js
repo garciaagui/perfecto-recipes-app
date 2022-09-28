@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import filterByCategory from '../redux/actions/filterByCategory';
 import getFirstRecipes from '../redux/actions/getFirstRecipes';
 
-function Categories({ dispatch, history, categories }) {
+function Categories({ dispatch, history, categories, selectedCategory }) {
   const { location: { pathname } } = history;
 
   return (
@@ -14,7 +14,11 @@ function Categories({ dispatch, history, categories }) {
           key={ index }
           data-testid={ `${strCategory}-category-filter` }
           type="button"
-          onClick={ () => { dispatch(filterByCategory(pathname, strCategory)); } }
+          onClick={ () => {
+            if (selectedCategory !== strCategory) {
+              dispatch(filterByCategory(pathname, strCategory));
+            } else dispatch(getFirstRecipes(pathname));
+          } }
         >
           {strCategory}
         </button>
@@ -33,12 +37,14 @@ function Categories({ dispatch, history, categories }) {
 
 const mapStateToProps = (state) => ({
   categories: state.mainReducer.categories,
+  selectedCategory: state.mainReducer.selectedCategory,
 });
 
 Categories.propTypes = {
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape().isRequired,
   categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  selectedCategory: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(Categories);

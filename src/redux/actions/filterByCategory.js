@@ -1,8 +1,8 @@
 import { GET_RECIPES_BY_CATEGORY } from './types';
 
-export default function filterByCategory(pathname, filter) {
+export default function filterByCategory(pathname, category) {
   const recipeDB = (pathname === '/meals') ? 'themealdb' : 'thecocktaildb';
-  const fetchURL = `https://www.${recipeDB}.com/api/json/v1/1/filter.php?c=${filter}`;
+  const fetchURL = `https://www.${recipeDB}.com/api/json/v1/1/filter.php?c=${category}`;
 
   return async (dispatch) => {
     try {
@@ -12,6 +12,7 @@ export default function filterByCategory(pathname, filter) {
         type: GET_RECIPES_BY_CATEGORY,
         payload: {
           data,
+          category,
         },
       });
     } catch (e) {
