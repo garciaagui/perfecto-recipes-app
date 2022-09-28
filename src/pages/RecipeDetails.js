@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { mountRecipeDetailsAPI } from '../redux/actions/RecipesDetailsAPI';
 import { filterIngredients,
   filterIngredientsQuantity } from '../tests/helpers/filterIngredients';
+import { checkDoneRecipes, checkInProgresRecipes } from '../tests/helpers/localStorage';
 
 function RecipeDetails({ history, dispatch, recipeDetails }) {
   const [ingredients, setIngredients] = useState([]);
@@ -12,6 +13,7 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
     toSliceNumMeals: 6,
     toSliceNumDrinks: 7,
   });
+
   useEffect(() => {
     if (!recipeDetails.meals && !recipeDetails.drinks) {
       dispatch(mountRecipeDetailsAPI(history));
@@ -39,7 +41,7 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
     return (
       <section>
         { recipeDetails.meals.map((meal) => (
-          <div key={ meal.idDrink }>
+          <div key={ meal.idMeal }>
             <div>
               <h1 data-testid="recipe-title">{meal.strMeal}</h1>
               <h3 data-testid="recipe-category">{meal.strCategory}</h3>
@@ -70,10 +72,25 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
             </div>
           </div>
         )) }
-        <div>
-          <button data-testid="share-btn" type="button">Share</button>
-          <button data-testid="favorite-btn" type="button">Favorite</button>
-        </div>
+        <button data-testid="share-btn" type="button">Share</button>
+        <button data-testid="favorite-btn" type="button">Favorite</button>
+        { checkDoneRecipes(recipeDetails.meals[0].idMeal)
+          ? ''
+          : (
+            <button
+              data-testid="start-recipe-btn"
+              type="button"
+              className="start-recipe-btn"
+              onClick={
+                () => history
+                  .push(`${pathname}/in-progress`)
+              }
+            >
+              {checkInProgresRecipes(recipeDetails.meals[0].idMeal, 'meals')
+                ? 'Continue Recipe'
+                : 'Start Recipe'}
+            </button>
+          )}
       </section>
     );
   }
@@ -103,10 +120,27 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
         )) }
         <button data-testid="share-btn" type="button">Share</button>
         <button data-testid="favorite-btn" type="button">Favorite</button>
+        { checkDoneRecipes(recipeDetails.drinks[0].idDrink)
+          ? ''
+          : (
+            <button
+              data-testid="start-recipe-btn"
+              type="button"
+              className="start-recipe-btn"
+              onClick={
+                () => history
+                  .push(`${pathname}/in-progress`)
+              }
+            >
+              {checkInProgresRecipes(recipeDetails.drinks[0].idDrink, 'drinks')
+                ? 'Continue Recipe'
+                : 'Start Recipe'}
+            </button>
+          )}
       </section>
     );
   }
-  return <h1>Carregando..</h1>;
+  return <h1>Carregando...</h1>;
 }
 
 const mapStateToProps = (state) => ({
