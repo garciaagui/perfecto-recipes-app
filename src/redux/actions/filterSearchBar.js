@@ -1,5 +1,4 @@
 import { GET_RECIPES } from './types';
-// export const OTHER = 'SEARCH_FILTE';
 
 export default function filterSearchBar(state, pathname) {
   const { searchInput, searchFilter } = state;
