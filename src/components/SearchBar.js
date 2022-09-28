@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { filterSearchBar } from '../redux/actions/SearchBarFilter';
+import filterSearchBar from '../redux/actions/filterSearchBar';
 
-function SearchBar({ history, dispatch, recipes }) { // ao usar a funçao 'connect' que conecta o componente no redux ele adiciona nas props o dispatch
+function SearchBar({ history, dispatch, recipes, selectedCategory }) { // ao usar a funçao 'connect' que conecta o componente no redux ele adiciona nas props o dispatch
   const [searchData, setSearchData] = useState({
     searchInput: '',
     searchFilter: '',
@@ -12,11 +12,12 @@ function SearchBar({ history, dispatch, recipes }) { // ao usar a funçao 'conne
   useEffect(() => {
     if (recipes !== false) {
       const { location: { pathname } } = history;
-      if (recipes.meals !== null && pathname === '/meals' && recipes.meals.length === 1) {
+      if (recipes.meals !== null && pathname === '/meals'
+       && !selectedCategory.length && recipes.meals.length === 1) {
         history.push(`${pathname}/${recipes.meals[0].idMeal}`);
       }
       if (recipes.drinks !== null && pathname === '/drinks'
-      && recipes.drinks.length === 1) {
+      && !selectedCategory.length && recipes.drinks.length === 1) {
         history.push(`${pathname}/${recipes.drinks[0].idDrink}`);
       }
     }
@@ -94,7 +95,8 @@ function SearchBar({ history, dispatch, recipes }) { // ao usar a funçao 'conne
 }
 
 const mapStateToProps = (state) => ({
-  recipes: state.renderRecipes.recipes,
+  recipes: state.mainReducer.recipes,
+  selectedCategory: state.mainReducer.selectedCategory,
 });
 
 SearchBar.propTypes = {
@@ -104,6 +106,7 @@ SearchBar.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   recipes: PropTypes.bool.isRequired,
+  selectedCategory: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(SearchBar);

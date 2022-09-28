@@ -4,48 +4,48 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useGetFirstRecipes from '../hooks/useGetFirstRecipes';
 
-function Drinks({ recipes, dispatch, history }) {
-  const { drinks } = recipes;
+function Meals({ recipes, dispatch, history }) {
+  const { meals } = recipes;
   const { location: { pathname } } = history;
 
   useGetFirstRecipes(dispatch, pathname);
 
-  const renderInMap = (drink, index) => (
+  const renderInMap = (meal, index) => (
     <Link
-      to={ `/drinks/${drink.idDrink}` }
-      key={ drink.idDrink }
+      to={ `/meals/${meal.idMeal}` }
+      key={ meal.idMeal }
     >
       <div
         data-testid={ `${index}-recipe-card` }
         className="recipe-card"
       >
         <img
-          src={ drink.strDrinkThumb }
-          alt={ drink.strDrink }
+          src={ meal.strMealThumb }
+          alt={ meal.strMeal }
           data-testid={ `${index}-card-img` }
         />
-        <h2 data-testid={ `${index}-card-name` }>{drink.strDrink}</h2>
+        <h2 data-testid={ `${index}-card-name` }>{meal.strMeal}</h2>
       </div>
     </Link>
   );
 
-  if (drinks === null) {
+  if (meals === null) {
     global
       .alert('Sorry, we haven\'t found any recipes for these filters.');
   }
 
-  // if (drinks !== null && drinks !== undefined && recipes !== false && drinks.length > 1) {
-  if (drinks !== null && drinks !== undefined && recipes !== false) {
+  // if (meals !== null && meals !== undefined && recipes !== false && meals.length > 1) {
+  if (meals !== null && meals !== undefined && recipes !== false) {
     const maxLength = 12;
-    const recipesLengthValid = drinks.length > maxLength;
+    const recipesLengthValid = meals.length > maxLength;
     return (
       <section>
         { recipesLengthValid
           ? (
-            drinks.slice(0, maxLength).map((drink, index) => renderInMap(drink, index))
+            meals.slice(0, maxLength).map((meal, index) => renderInMap(meal, index))
           )
           : (
-            drinks.map((drink, index) => renderInMap(drink, index))
+            meals.map((meal, index) => renderInMap(meal, index))
           ) }
       </section>
     );
@@ -56,10 +56,10 @@ const mapStateToProps = (state) => ({
   recipes: state.mainReducer.recipes,
 });
 
-Drinks.propTypes = {
+Meals.propTypes = {
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape().isRequired,
   recipes: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps)(Drinks);
+export default connect(mapStateToProps)(Meals);

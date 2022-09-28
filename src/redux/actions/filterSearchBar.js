@@ -1,6 +1,6 @@
-export const SEARCH_FILTER = 'SEARCH_FILTER';
+import { GET_RECIPES } from './types';
 
-export function filterSearchBar(state, pathname) {
+export default function filterSearchBar(state, pathname) {
   const { searchInput, searchFilter } = state;
   let recipeDB;
   let fetchURL;
@@ -25,7 +25,7 @@ export function filterSearchBar(state, pathname) {
       const response = await fetch(fetchURL);
       const data = await response.json();
       dispatch({
-        type: SEARCH_FILTER,
+        type: GET_RECIPES,
         payload: {
           data,
         },
