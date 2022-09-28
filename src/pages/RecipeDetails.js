@@ -70,6 +70,10 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
             </div>
           </div>
         )) }
+        <div>
+          <button data-testid="share-btn" type="button">Share</button>
+          <button data-testid="favorite-btn" type="button">Favorite</button>
+        </div>
       </section>
     );
   }
@@ -97,6 +101,8 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
             </div>
           </div>
         )) }
+        <button data-testid="share-btn" type="button">Share</button>
+        <button data-testid="favorite-btn" type="button">Favorite</button>
       </section>
     );
   }
