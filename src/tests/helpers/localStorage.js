@@ -16,3 +16,17 @@ export function clearLocalStorage() {
   localStorage.removeItem('inProgressRecipes');
   localStorage.removeItem('mealsToken');
 }
+
+export function checkDoneRecipes(recipeId) {
+  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+  if (!doneRecipes) return false;
+  return doneRecipes.some((recipe) => recipe.id === recipeId);
+}
+
+export function checkInProgresRecipes(recipeId, recipeType) {
+  const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  if (!inProgressRecipes) return false;
+
+  const keys = Object.keys(inProgressRecipes[recipeType]);
+  return keys.some((key) => key === recipeId);
+}
