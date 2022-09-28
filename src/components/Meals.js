@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import useGetFirstRecipes from '../hooks/useGetFirstRecipes';
 
 function Meals({ recipes, dispatch, history }) {
@@ -10,18 +11,22 @@ function Meals({ recipes, dispatch, history }) {
   useGetFirstRecipes(dispatch, pathname);
 
   const renderInMap = (meal, index) => (
-    <div
+    <Link
+      to={ `/meals/${meal.idMeal}` }
       key={ meal.idMeal }
-      data-testid={ `${index}-recipe-card` }
-      className="recipe-card"
     >
-      <img
-        src={ meal.strMealThumb }
-        alt={ meal.strMeal }
-        data-testid={ `${index}-card-img` }
-      />
-      <h2 data-testid={ `${index}-card-name` }>{meal.strMeal}</h2>
-    </div>
+      <div
+        data-testid={ `${index}-recipe-card` }
+        className="recipe-card"
+      >
+        <img
+          src={ meal.strMealThumb }
+          alt={ meal.strMeal }
+          data-testid={ `${index}-card-img` }
+        />
+        <h2 data-testid={ `${index}-card-name` }>{meal.strMeal}</h2>
+      </div>
+    </Link>
   );
 
   if (meals === null) {
