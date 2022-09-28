@@ -20,7 +20,7 @@ function Recipes({ history, dispatch }) {
   return (
     <div>
       <Header history={ history } />
-      <Categories />
+      <Categories history={ history } />
       { locationValid ? <Meals history={ history } /> : <Drinks history={ history } /> }
       <Footer />
     </div>

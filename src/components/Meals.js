@@ -29,7 +29,8 @@ function Meals({ recipes, dispatch, history }) {
       .alert('Sorry, we haven\'t found any recipes for these filters.');
   }
 
-  if (meals !== null && meals !== undefined && recipes !== false && meals.length > 1) {
+  // if (meals !== null && meals !== undefined && recipes !== false && meals.length > 1) {
+  if (meals !== null && meals !== undefined && recipes !== false) {
     const maxLength = 12;
     const recipesLengthValid = meals.length > maxLength;
     return (
@@ -47,7 +48,7 @@ function Meals({ recipes, dispatch, history }) {
 }
 
 const mapStateToProps = (state) => ({
-  recipes: state.renderRecipes.recipes,
+  recipes: state.mainReducer.recipes,
 });
 
 Meals.propTypes = {

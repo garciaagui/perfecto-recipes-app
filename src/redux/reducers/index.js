@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import renderRecipes from './renderRecipes';
-import renderCategories from './renderCategories';
+import mainReducer from './mainReducer';
 
 const rootReducer = combineReducers({
-  renderRecipes,
-  renderCategories,
+  mainReducer,
 });
 
 export default rootReducer;
