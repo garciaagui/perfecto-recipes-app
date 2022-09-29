@@ -2,6 +2,11 @@
   width: 200px;
 }
 
+.start-recipe-btn {
+  bottom: 0;
+  position: fixed;
+}
+
 footer {
   background-color: lightblue;
   bottom: 0;

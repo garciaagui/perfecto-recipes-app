@@ -6,6 +6,7 @@ import { mountRecipeDetailsAPI } from '../redux/actions/RecipesDetailsAPI';
 import { filterIngredients,
   filterIngredientsQuantity } from '../tests/helpers/filterIngredients';
 import getRecommendedRecipes from '../redux/actions/getRecommendedRecipes';
+import { checkDoneRecipes, checkInProgresRecipes } from '../tests/helpers/localStorage';
 
 function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes }) {
   const [ingredients, setIngredients] = useState([]);
@@ -44,7 +45,7 @@ function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes })
     return (
       <section>
         { recipeDetails.meals.map((meal) => (
-          <div key={ meal.idDrink }>
+          <div key={ meal.idMeal }>
             <div>
               <h1 data-testid="recipe-title">{meal.strMeal}</h1>
               <h3 data-testid="recipe-category">{meal.strCategory}</h3>
@@ -52,80 +53,72 @@ function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes })
                 src={ meal.strMealThumb }
                 alt={ meal.strMeal }
                 data-testid="recipe-photo"
-                style={ {
-                  height: '360px',
-                  width: '360px',
-                } }
+                style={ { height: '360px', width: '360px' } }
               />
               <ul>
                 { ingredients
                   .map((ingredient, index) => renderIngredientsMap(ingredient, index)) }
               </ul>
               <p data-testid="instructions">
-                {meal.strInstructions}
+                { meal.strInstructions }
               </p>
               <div>
                 <video data-testid="video" width="320" height="240" controls>
                   <source src={ meal.strYoutube } type="video/webm" />
-                  <track
-                    default
-                    kind="captions"
-                    srcLang="en"
-                    src=""
-                  />
-                  Your browser does not support the video tag.
+                  <track default kind="captions" srcLang="en" src="" />
                 </video>
               </div>
             </div>
           </div>
         )) }
-        <div>
-          <div
-            style={ {
-              height: '225px',
-              width: '360px',
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'start',
-              alignItems: 'stretch',
-              flexWrap: 'nowrap',
-              overflowX: 'scroll',
-            } }
-          >
-            { recommendedRecipes.drinks.slice(0, toSliceRecommendedRecipes)
-              .map((drink, index) => (
-                <Card
-                  key={ drink.idDrink }
-                  data-testid={ `${index}-recommendation-card` }
-                  style={ {
-                    minWidth: '190px',
-                  } }
+        <div
+          style={ { height: '225px',
+            width: '360px',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'start',
+            alignItems: 'stretch',
+            flexWrap: 'nowrap',
+            overflowX: 'scroll' } }
+        >
+          { recommendedRecipes.drinks.slice(0, toSliceRecommendedRecipes)
+            .map((drink, index) => (
+              <Card
+                key={ drink.idDrink }
+                data-testid={ `${index}-recommendation-card` }
+                style={ { minWidth: '190px' } }
+              >
+                <Card.Img
+                  variant="top"
+                  src={ drink.strDrinkThumb }
+                  style={ { width: 'auto' } }
+                />
+                <Card.Title
+                  data-testid={ `${index}-recommendation-title` }
+                  style={ { width: 'auto' } }
                 >
-                  <Card.Img
-                    variant="top"
-                    src={ drink.strDrinkThumb }
-                    style={ {
-                      width: 'auto',
-                    } }
-                  />
-                  <Card.Title
-                    data-testid={ `${index}-recommendation-title` }
-                    style={ {
-                      width: 'auto',
-                    } }
-                  >
-                    { drink.strDrink }
-                  </Card.Title>
-                </Card>
-              )) }
-          </div>
-          <button data-testid="share-btn" type="button">Share</button>
-          <button data-testid="favorite-btn" type="button">Favorite</button>
+                  { drink.strDrink }
+                </Card.Title>
+              </Card>
+            )) }
         </div>
+        <button data-testid="share-btn" type="button">Share</button>
+        <button data-testid="favorite-btn" type="button">Favorite</button>
+        { checkDoneRecipes(recipeDetails.meals[0].idMeal)
+          ? '' : (
+            <button
+              data-testid="start-recipe-btn"
+              type="button"
+              className="start-recipe-btn"
+              onClick={ () => history.push(`${pathname}/in-progress`) }
+            >
+              {checkInProgresRecipes(recipeDetails.meals[0].idMeal, 'meals')
+                ? 'Continue Recipe' : 'Start Recipe'}
+            </button>
+          )}
       </section>
     );
   }
-
   if (pathname.slice(1, toSliceNumDrinks) === 'drinks' && recipeDetails.drinks
   && recommendedRecipes.meals) {
     return (
@@ -139,10 +132,7 @@ function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes })
                 src={ drink.strDrinkThumb }
                 alt={ drink.strDrink }
                 data-testid="recipe-photo"
-                style={ {
-                  height: '360px',
-                  width: '360px',
-                } }
+                style={ { height: '360px', width: '360px' } }
               />
               <ul>
                 { ingredients
@@ -155,38 +145,30 @@ function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes })
           </div>
         )) }
         <div
-          style={ {
-            height: '225px',
+          style={ { height: '225px',
             width: '360px',
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'start',
             alignItems: 'stretch',
             flexWrap: 'nowrap',
-            overflowX: 'scroll',
-          } }
+            overflowX: 'scroll' } }
         >
           { recommendedRecipes.meals.slice(0, toSliceRecommendedRecipes)
             .map((meal, index) => (
               <Card
                 key={ meal.idMeal }
                 data-testid={ `${index}-recommendation-card` }
-                style={ {
-                  minWidth: '190px',
-                } }
+                style={ { minWidth: '190px' } }
               >
                 <Card.Img
                   variant="top"
                   src={ meal.strMealThumb }
-                  style={ {
-                    width: 'auto',
-                  } }
+                  style={ { width: 'auto' } }
                 />
                 <Card.Title
                   data-testid={ `${index}-recommendation-title` }
-                  style={ {
-                    width: 'auto',
-                  } }
+                  style={ { width: 'auto' } }
                 >
                   { meal.strMeal }
                 </Card.Title>
@@ -195,6 +177,18 @@ function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes })
         </div>
         <button data-testid="share-btn" type="button">Share</button>
         <button data-testid="favorite-btn" type="button">Favorite</button>
+        { checkDoneRecipes(recipeDetails.drinks[0].idDrink)
+          ? '' : (
+            <button
+              data-testid="start-recipe-btn"
+              type="button"
+              className="start-recipe-btn"
+              onClick={ () => history.push(`${pathname}/in-progress`) }
+            >
+              {checkInProgresRecipes(recipeDetails.drinks[0].idDrink, 'drinks')
+                ? 'Continue Recipe' : 'Start Recipe'}
+            </button>
+          )}
       </section>
     );
   }
