@@ -90,7 +90,7 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
       strMeal, strMealThumb, strArea } = item[0];
     const meal = {
       id: idMeal,
-      type: 'drink',
+      type: 'meal',
       nationality: strArea,
       category: strCategory,
       alcoholicOrNot: '',
