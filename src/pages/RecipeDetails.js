@@ -146,6 +146,7 @@ function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes })
             </div>
           </div>
         )) }
+<<<<<<< HEAD
         <div
           style={ { height: '225px',
             width: '360px',
@@ -176,6 +177,22 @@ function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes })
                 </Card.Title>
               </Card>
             )) }
+=======
+        <div>
+          <button data-testid="share-btn" type="button">Share</button>
+          <button
+            data-testid="favorite-btn"
+            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+            alt="icone favorite"
+            type="button"
+            onClick={ () => setFavoriteMeal(recipeDetails.meals) }
+          >
+            <img
+              src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+              alt="icone favorite"
+            />
+          </button>
+>>>>>>> b9d4832868e6ab13f01c7b70f23ccab0d3c4a650
         </div>
         <button data-testid="share-btn" type="button">Share</button>
         <button
@@ -262,6 +279,7 @@ function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes })
         <button data-testid="share-btn" type="button">Share</button>
         <button
           type="button"
+          src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
           onClick={ () => setFavoriteDrinks(recipeDetails.drinks) }
         >
           <img
