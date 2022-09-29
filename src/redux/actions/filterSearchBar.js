@@ -22,7 +22,6 @@ export default function filterSearchBar(state, pathname) {
   }
 
   return async (dispatch) => {
-    console.log('test');
     try {
       const response = await fetch(fetchURL);
       const data = await response.json();
