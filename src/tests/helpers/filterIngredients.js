@@ -11,7 +11,6 @@
 
 export function filterIngredients(recipeDetails) {
   const toSliceFilterNum = 13;
-  console.log(Object.entries(recipeDetails));
   return Object.entries(recipeDetails)
     .filter((e) => e[0].slice(0, toSliceFilterNum) === 'strIngredient' && e[1])
     .map((e) => e[1]);

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { mountRecipeDetailsAPI } from '../redux/actions/RecipesDetailsAPI';
@@ -7,8 +8,8 @@ import { filterIngredients,
 import { checkDoneRecipes, checkInProgresRecipes } from '../tests/helpers/localStorage';
 
 function RecipeDetails({ history, dispatch, recipeDetails }) {
-  const [ingredients, setIngredients] = useState([]);
-  const [IngredientsQuantity, setIngredientsQuantity] = useState([]);
+  // const [ingredients, setIngredients] = useState([]);
+  // const [IngredientsQuantity, setIngredientsQuantity] = useState([]);
   // const [toSliceNumbers] = useState({
   //   toSliceNumMeals: 6,
   //   toSliceNumDrinks: 7,
@@ -20,11 +21,11 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
   const id = (pathname.includes('meals')) ? 'idMeal' : 'idDrink';
   const str = (pathname.includes('meals')) ? 'strMeal' : 'strDrink';
   const strThumb = (pathname.includes('meals')) ? 'strMealThumb' : 'strDrinkThumb';
+  const ingredients = filterIngredients(recipeDetails);
+  const ingredientsQuantity = filterIngredientsQuantity(recipeDetails);
 
   useEffect(() => {
     dispatch(mountRecipeDetailsAPI(pathname));
-    setIngredients(filterIngredients(recipeDetails));
-    setIngredientsQuantity(filterIngredientsQuantity(recipeDetails));
   }, []);
 
   function renderIngredientsMap(ingredient, index) {
@@ -33,7 +34,7 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
         data-testid={ `${index}-ingredient-name-and-measure` }
         key={ `${index}${ingredient}` }
       >
-        {`${ingredient} - ${IngredientsQuantity[index]}`}
+        {`${ingredient} - ${ingredientsQuantity[index]}`}
       </li>
     );
   }
@@ -42,7 +43,9 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
     <section>
       <div>
         <h1 data-testid="recipe-title">{recipeDetails[str]}</h1>
-        <h3 data-testid="recipe-category">{recipeDetails.strCategory}</h3>
+        <h3 data-testid="recipe-category">
+          {type === 'meals' ? recipeDetails.strCategory : recipeDetails.strAlcoholic}
+        </h3>
         <img
           src={ recipeDetails[strThumb] }
           alt={ recipeDetails[str] }
