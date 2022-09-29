@@ -10,12 +10,6 @@ export default function getFirstRecipes(pathname) {
     try {
       const response = await fetch(fetchURL);
       const data = await response.json();
-      // dispatch({
-      //   type: GET_RECIPES,
-      //   payload: {
-      //     data,
-      //   },
-      // });
       dispatch({
         type: GET_RECIPES,
         payload: data[type].slice(0, LIMIT),

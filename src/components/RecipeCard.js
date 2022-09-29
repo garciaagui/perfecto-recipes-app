@@ -2,16 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import useGetFirstRecipes from '../hooks/useGetFirstRecipes';
 
-// function RecipeCard({ recipes, dispatch, history }) {
 function RecipeCard({ recipes, history }) {
   const { location: { pathname } } = history;
   const id = (pathname === '/meals') ? 'idMeal' : 'idDrink';
   const str = (pathname === '/meals') ? 'strMeal' : 'strDrink';
   const strThumb = (pathname === '/meals') ? 'strMealThumb' : 'strDrinkThumb';
-
-  // useGetFirstRecipes(dispatch, pathname);
 
   return (
     <section>
@@ -45,7 +41,6 @@ const mapStateToProps = (state) => ({
 });
 
 RecipeCard.propTypes = {
-  // dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape().isRequired,
   recipes: PropTypes.arrayOf(PropTypes.shape().isRequired).isRequired,
 };
