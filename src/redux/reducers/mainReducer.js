@@ -1,11 +1,14 @@
-import { GET_RECIPES,
+import {
+  GET_RECIPES,
   GET_RECIPES_BY_CATEGORY,
-  GET_CATEGORIES } from '../actions/types';
+  GET_CATEGORIES,
+  GET_RECOMMENDED_RECIPES } from '../actions/types';
 
 const INITIAL_STATE = {
   recipes: false,
   categories: [],
   selectedCategory: '',
+  recommendedRecipes: {},
 };
 
 function mainReducer(state = INITIAL_STATE, action) {
@@ -23,6 +26,10 @@ function mainReducer(state = INITIAL_STATE, action) {
   case GET_CATEGORIES: return {
     ...state,
     categories: action.payload,
+  };
+  case GET_RECOMMENDED_RECIPES: return {
+    ...state,
+    recommendedRecipes: action.payload.data,
   };
   default: return state;
   }
