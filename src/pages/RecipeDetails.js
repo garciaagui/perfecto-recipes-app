@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Card } from 'react-bootstrap';
 import { mountRecipeDetailsAPI } from '../redux/actions/RecipesDetailsAPI';
 import { filterIngredients,
   filterIngredientsQuantity } from '../tests/helpers/filterIngredients';
+import getRecommendedRecipes from '../redux/actions/getRecommendedRecipes';
 import { checkDoneRecipes, checkInProgresRecipes } from '../tests/helpers/localStorage';
 
-function RecipeDetails({ history, dispatch, recipeDetails }) {
+function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes }) {
   const [ingredients, setIngredients] = useState([]);
   const [IngredientsQuantity, setIngredientsQuantity] = useState([]);
   const [toSliceNumbers] = useState({
     toSliceNumMeals: 6,
     toSliceNumDrinks: 7,
+    toSliceRecommendedRecipes: 6,
   });
-
   useEffect(() => {
     if (!recipeDetails.meals && !recipeDetails.drinks) {
       dispatch(mountRecipeDetailsAPI(history));
+      dispatch(getRecommendedRecipes(history));
     } else {
       setIngredients(filterIngredients(recipeDetails));
       setIngredientsQuantity(filterIngredientsQuantity(recipeDetails));
@@ -24,7 +27,7 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
   }, [recipeDetails]);
 
   const { location: { pathname } } = history;
-  const { toSliceNumMeals, toSliceNumDrinks } = toSliceNumbers;
+  const { toSliceNumMeals, toSliceNumDrinks, toSliceRecommendedRecipes } = toSliceNumbers;
 
   function renderIngredientsMap(ingredient, index) {
     return (
@@ -37,7 +40,8 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
     );
   }
 
-  if (pathname.slice(1, toSliceNumMeals) === 'meals' && recipeDetails.meals) {
+  if (pathname.slice(1, toSliceNumMeals) === 'meals' && recipeDetails.meals
+  && recommendedRecipes.drinks) {
     return (
       <section>
         { recipeDetails.meals.map((meal) => (
@@ -49,53 +53,74 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
                 src={ meal.strMealThumb }
                 alt={ meal.strMeal }
                 data-testid="recipe-photo"
+                style={ { height: '360px', width: '360px' } }
               />
               <ul>
                 { ingredients
                   .map((ingredient, index) => renderIngredientsMap(ingredient, index)) }
               </ul>
               <p data-testid="instructions">
-                {meal.strInstructions}
+                { meal.strInstructions }
               </p>
               <div>
                 <video data-testid="video" width="320" height="240" controls>
                   <source src={ meal.strYoutube } type="video/webm" />
-                  <track
-                    default
-                    kind="captions"
-                    srcLang="en"
-                    src=""
-                  />
-                  Your browser does not support the video tag.
+                  <track default kind="captions" srcLang="en" src="" />
                 </video>
               </div>
             </div>
           </div>
         )) }
+        <div
+          style={ { height: '225px',
+            width: '360px',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'start',
+            alignItems: 'stretch',
+            flexWrap: 'nowrap',
+            overflowX: 'scroll' } }
+        >
+          { recommendedRecipes.drinks.slice(0, toSliceRecommendedRecipes)
+            .map((drink, index) => (
+              <Card
+                key={ drink.idDrink }
+                data-testid={ `${index}-recommendation-card` }
+                style={ { minWidth: '190px' } }
+              >
+                <Card.Img
+                  variant="top"
+                  src={ drink.strDrinkThumb }
+                  style={ { width: 'auto' } }
+                />
+                <Card.Title
+                  data-testid={ `${index}-recommendation-title` }
+                  style={ { width: 'auto' } }
+                >
+                  { drink.strDrink }
+                </Card.Title>
+              </Card>
+            )) }
+        </div>
         <button data-testid="share-btn" type="button">Share</button>
         <button data-testid="favorite-btn" type="button">Favorite</button>
         { checkDoneRecipes(recipeDetails.meals[0].idMeal)
-          ? ''
-          : (
+          ? '' : (
             <button
               data-testid="start-recipe-btn"
               type="button"
               className="start-recipe-btn"
-              onClick={
-                () => history
-                  .push(`${pathname}/in-progress`)
-              }
+              onClick={ () => history.push(`${pathname}/in-progress`) }
             >
               {checkInProgresRecipes(recipeDetails.meals[0].idMeal, 'meals')
-                ? 'Continue Recipe'
-                : 'Start Recipe'}
+                ? 'Continue Recipe' : 'Start Recipe'}
             </button>
           )}
       </section>
     );
   }
-
-  if (pathname.slice(1, toSliceNumDrinks) === 'drinks' && recipeDetails.drinks) {
+  if (pathname.slice(1, toSliceNumDrinks) === 'drinks' && recipeDetails.drinks
+  && recommendedRecipes.meals) {
     return (
       <section>
         { recipeDetails.drinks.map((drink) => (
@@ -107,6 +132,7 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
                 src={ drink.strDrinkThumb }
                 alt={ drink.strDrink }
                 data-testid="recipe-photo"
+                style={ { height: '360px', width: '360px' } }
               />
               <ul>
                 { ingredients
@@ -118,23 +144,49 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
             </div>
           </div>
         )) }
+        <div
+          style={ { height: '225px',
+            width: '360px',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'start',
+            alignItems: 'stretch',
+            flexWrap: 'nowrap',
+            overflowX: 'scroll' } }
+        >
+          { recommendedRecipes.meals.slice(0, toSliceRecommendedRecipes)
+            .map((meal, index) => (
+              <Card
+                key={ meal.idMeal }
+                data-testid={ `${index}-recommendation-card` }
+                style={ { minWidth: '190px' } }
+              >
+                <Card.Img
+                  variant="top"
+                  src={ meal.strMealThumb }
+                  style={ { width: 'auto' } }
+                />
+                <Card.Title
+                  data-testid={ `${index}-recommendation-title` }
+                  style={ { width: 'auto' } }
+                >
+                  { meal.strMeal }
+                </Card.Title>
+              </Card>
+            )) }
+        </div>
         <button data-testid="share-btn" type="button">Share</button>
         <button data-testid="favorite-btn" type="button">Favorite</button>
         { checkDoneRecipes(recipeDetails.drinks[0].idDrink)
-          ? ''
-          : (
+          ? '' : (
             <button
               data-testid="start-recipe-btn"
               type="button"
               className="start-recipe-btn"
-              onClick={
-                () => history
-                  .push(`${pathname}/in-progress`)
-              }
+              onClick={ () => history.push(`${pathname}/in-progress`) }
             >
               {checkInProgresRecipes(recipeDetails.drinks[0].idDrink, 'drinks')
-                ? 'Continue Recipe'
-                : 'Start Recipe'}
+                ? 'Continue Recipe' : 'Start Recipe'}
             </button>
           )}
       </section>
@@ -145,6 +197,7 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
 
 const mapStateToProps = (state) => ({
   recipeDetails: state.renderRecipeDetails.recipeDetail,
+  recommendedRecipes: state.mainReducer.recommendedRecipes,
 });
 
 RecipeDetails.propTypes = {
@@ -154,6 +207,7 @@ RecipeDetails.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   recipeDetails: PropTypes.shape().isRequired,
+  recommendedRecipes: PropTypes.shape().isRequired,
 };
 
 export default connect(mapStateToProps)(RecipeDetails);
