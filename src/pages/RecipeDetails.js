@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -28,7 +29,7 @@ function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes })
       setIngredients(filterIngredients(recipeDetails));
       setIngredientsQuantity(filterIngredientsQuantity(recipeDetails));
     }
-  }, [recipeDetails]);
+  }, [dispatch, history, recipeDetails]);
 
   function checkFavorite() {
     const local = getfavoriteRecipes();
@@ -50,7 +51,7 @@ function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes })
     if (recipeDetails.drinks !== undefined) {
       checkFavorite();
     }
-  }, [recipeDetails]);
+  }, [checkFavorite, recipeDetails]);
 
   const { location: { pathname } } = history;
   const { toSliceNumMeals, toSliceNumDrinks, toSliceRecommendedRecipes } = toSliceNumbers;
@@ -146,7 +147,6 @@ function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes })
             </div>
           </div>
         )) }
-<<<<<<< HEAD
         <div
           style={ { height: '225px',
             width: '360px',
@@ -177,34 +177,21 @@ function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes })
                 </Card.Title>
               </Card>
             )) }
-=======
-        <div>
-          <button data-testid="share-btn" type="button">Share</button>
-          <button
-            data-testid="favorite-btn"
-            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-            alt="icone favorite"
-            type="button"
-            onClick={ () => setFavoriteMeal(recipeDetails.meals) }
-          >
-            <img
-              src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+          <div>
+            <button data-testid="share-btn" type="button">Share</button>
+            <button
               alt="icone favorite"
-            />
-          </button>
->>>>>>> b9d4832868e6ab13f01c7b70f23ccab0d3c4a650
+              type="button"
+              onClick={ () => setFavoriteMeal(recipeDetails.meals) }
+            >
+              <img
+                src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+                data-testid="favorite-btn"
+                alt="icone favorite"
+              />
+            </button>
+          </div>
         </div>
-        <button data-testid="share-btn" type="button">Share</button>
-        <button
-          data-testid="favorite-btn"
-          type="button"
-          onClick={ () => setFavoriteMeal(recipeDetails.meals) }
-        >
-          <img
-            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-            alt="icone favorite"
-          />
-        </button>
         { checkDoneRecipes(recipeDetails.meals[0].idMeal)
           ? '' : (
             <button
@@ -279,7 +266,6 @@ function RecipeDetails({ history, dispatch, recipeDetails, recommendedRecipes })
         <button data-testid="share-btn" type="button">Share</button>
         <button
           type="button"
-          src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
           onClick={ () => setFavoriteDrinks(recipeDetails.drinks) }
         >
           <img
