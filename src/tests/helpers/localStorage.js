@@ -16,3 +16,17 @@ export function clearLocalStorage() {
   localStorage.removeItem('inProgressRecipes');
   localStorage.removeItem('mealsToken');
 }
+
+export function getfavoriteRecipes() {
+  const data = localStorage.getItem('favoriteRecipes');
+  if (data === null) {
+    return [];
+  }
+  const retorno = JSON.parse(data);
+  return retorno;
+}
+
+export function setfavoriteRecipes(favorites) {
+  const data = JSON.stringify(favorites);
+  localStorage.setItem('favoriteRecipes', data);
+}

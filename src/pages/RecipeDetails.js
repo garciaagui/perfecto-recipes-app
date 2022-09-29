@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { mountRecipeDetailsAPI } from '../redux/actions/RecipesDetailsAPI';
 import { filterIngredients,
   filterIngredientsQuantity } from '../tests/helpers/filterIngredients';
+import { getfavoriteRecipes, setfavoriteRecipes } from '../tests/helpers/localStorage';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function RecipeDetails({ history, dispatch, recipeDetails }) {
   const [ingredients, setIngredients] = useState([]);
@@ -12,12 +15,35 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
     toSliceNumMeals: 6,
     toSliceNumDrinks: 7,
   });
+  const [isFavorite, setIsFavorite] = useState(false);
   useEffect(() => {
     if (!recipeDetails.meals && !recipeDetails.drinks) {
       dispatch(mountRecipeDetailsAPI(history));
     } else {
       setIngredients(filterIngredients(recipeDetails));
       setIngredientsQuantity(filterIngredientsQuantity(recipeDetails));
+    }
+  }, [recipeDetails]);
+
+  function checkFavorite() {
+    const local = getfavoriteRecipes();
+    const reitMeals = recipeDetails.meals;
+    const reitDrinks = recipeDetails.drinks;
+    if (reitMeals !== undefined) {
+      const exis = local.some((receita) => receita.id === reitMeals[0].idMeal);
+      setIsFavorite(exis);
+    } if (reitDrinks !== undefined) {
+      const exis = local.some((receita) => receita.id === reitDrinks[0].idDrink);
+      setIsFavorite(exis);
+    }
+  }
+
+  useEffect(() => {
+    if (recipeDetails.meals !== undefined) {
+      checkFavorite();
+    }
+    if (recipeDetails.drinks !== undefined) {
+      checkFavorite();
     }
   }, [recipeDetails]);
 
@@ -33,6 +59,55 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
         {`${ingredient} - ${IngredientsQuantity[index]}`}
       </li>
     );
+  }
+
+  function setFavoriteDrinks(item) {
+    const { idDrink, strCategory, strAlcoholic, strDrink, strDrinkThumb } = item[0];
+    const drink = {
+      id: idDrink,
+      type: 'drink',
+      nationality: '',
+      category: strCategory,
+      alcoholicOrNot: strAlcoholic,
+      name: strDrink,
+      image: strDrinkThumb,
+    };
+    const local = getfavoriteRecipes();
+    const exist = local.some((receita) => receita.id === drink.id);
+    if (exist === false) {
+      local.push(drink);
+      setfavoriteRecipes(local);
+      checkFavorite();
+    } else {
+      const localFilter = local.filter((iten) => iten.id !== drink.id);
+      setfavoriteRecipes(localFilter);
+      checkFavorite();
+    }
+  }
+
+  function setFavoriteMeal(item) {
+    const { idMeal, strCategory,
+      strMeal, strMealThumb, strArea } = item[0];
+    const meal = {
+      id: idMeal,
+      type: 'drink',
+      nationality: strArea,
+      category: strCategory,
+      alcoholicOrNot: '',
+      name: strMeal,
+      image: strMealThumb,
+    };
+    const local = getfavoriteRecipes();
+    const exist = local.some((receita) => receita.id === meal.id);
+    if (exist === false) {
+      local.push(meal);
+      setfavoriteRecipes(local);
+      checkFavorite();
+    } else {
+      const localFilter = local.filter((iten) => iten.id !== meal.id);
+      setfavoriteRecipes(localFilter);
+      checkFavorite();
+    }
   }
 
   if (pathname.slice(1, toSliceNumMeals) === 'meals' && recipeDetails.meals) {
@@ -72,7 +147,16 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
         )) }
         <div>
           <button data-testid="share-btn" type="button">Share</button>
-          <button data-testid="favorite-btn" type="button">Favorite</button>
+          <button
+            data-testid="favorite-btn"
+            type="button"
+            onClick={ () => setFavoriteMeal(recipeDetails.meals) }
+          >
+            <img
+              src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+              alt="icone favorite"
+            />
+          </button>
         </div>
       </section>
     );
@@ -102,7 +186,16 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
           </div>
         )) }
         <button data-testid="share-btn" type="button">Share</button>
-        <button data-testid="favorite-btn" type="button">Favorite</button>
+        <button
+          data-testid="favorite-btn"
+          type="button"
+          onClick={ () => setFavoriteDrinks(recipeDetails.drinks) }
+        >
+          <img
+            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+            alt="icone favorite"
+          />
+        </button>
       </section>
     );
   }
