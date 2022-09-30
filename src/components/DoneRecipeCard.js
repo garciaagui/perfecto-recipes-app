@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import shareButton from '../images/shareIcon.svg';
 
 function DoneRecipeCard({ recipe, index }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleClickShare = async () => {
+    const url = (recipe.type === 'meal') ? `meals/${recipe.id}` : `drinks/${recipe.id}`;
+    await navigator.clipboard.writeText(`http://localhost:3000/${url}`);
+    setCopied(true);
+  };
+
   if (recipe.type === 'meal') {
     return (
       <div>
@@ -27,6 +35,7 @@ function DoneRecipeCard({ recipe, index }) {
         )) }
         <button
           type="button"
+          onClick={ handleClickShare }
         >
           <img
             data-testid={ `${index}-horizontal-share-btn` }
@@ -34,6 +43,7 @@ function DoneRecipeCard({ recipe, index }) {
             alt="Share Button"
           />
         </button>
+        { copied && <span>Link copied!</span> }
       </div>
     );
   } return (
@@ -61,6 +71,7 @@ function DoneRecipeCard({ recipe, index }) {
           alt="Share Button"
         />
       </button>
+      { copied && <span>Link copied!</span> }
     </div>
   );
 }
