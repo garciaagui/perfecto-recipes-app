@@ -30,3 +30,17 @@ export function checkInProgresRecipes(recipeId, recipeType) {
   const keys = Object.keys(inProgressRecipes[recipeType]);
   return keys.some((key) => key === recipeId);
 }
+
+export function getfavoriteRecipes() {
+  const data = localStorage.getItem('favoriteRecipes');
+  if (data === null) {
+    return [];
+  }
+  const retorno = JSON.parse(data);
+  return retorno;
+}
+
+export function setfavoriteRecipes(favorites) {
+  const data = JSON.stringify(favorites);
+  localStorage.setItem('favoriteRecipes', data);
+}

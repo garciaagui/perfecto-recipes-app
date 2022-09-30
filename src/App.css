@@ -7,6 +7,10 @@
   position: fixed;
 }
 
+.useful-btns {
+  margin-bottom: 100px;
+}
+
 footer {
   background-color: lightblue;
   bottom: 0;
