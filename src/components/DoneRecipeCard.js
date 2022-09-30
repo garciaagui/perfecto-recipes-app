@@ -1,17 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import shareButton from '../images/shareIcon.svg';
 
 function DoneRecipeCard({ recipe, index }) {
   if (recipe.type === 'meal') {
     return (
       <div>
-        <img
-          data-testid={ `${index}-horizontal-image` }
-          src={ recipe.image }
-          alt={ recipe.name }
-        />
-        <h2 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h2>
+        <Link to={ `/meals/${recipe.id}` }>
+          <img
+            width={ 250 }
+            data-testid={ `${index}-horizontal-image` }
+            src={ recipe.image }
+            alt={ recipe.name }
+          />
+          <h2 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h2>
+        </Link>
         <h3
           data-testid={ `${index}-horizontal-top-text` }
         >
@@ -34,12 +38,15 @@ function DoneRecipeCard({ recipe, index }) {
     );
   } return (
     <div>
-      <img
-        data-testid={ `${index}-horizontal-image` }
-        src={ recipe.image }
-        alt={ recipe.name }
-      />
-      <h2 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h2>
+      <Link to={ `/drinks/${recipe.id}` }>
+        <img
+          width={ 250 }
+          data-testid={ `${index}-horizontal-image` }
+          src={ recipe.image }
+          alt={ recipe.name }
+        />
+        <h2 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h2>
+      </Link>
       <h3 data-testid={ `${index}-horizontal-top-text` }>{recipe.alcoholicOrNot}</h3>
       <h4 data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</h4>
       { recipe.tags.map((tag) => (
