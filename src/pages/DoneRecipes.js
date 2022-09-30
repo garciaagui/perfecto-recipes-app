@@ -4,38 +4,59 @@ import Header from '../components/Header';
 import DoneRecipeCard from '../components/DoneRecipeCard';
 
 function DoneRecipes({ history }) {
-  const [doneRecipes, setDoneRecipes] = useState([]);
+  const [doneRecipes] = useState(
+    JSON.parse(localStorage.getItem('doneRecipes')),
+  );
+  const [recipeToRender, setRecipeToRender] = useState([]);
 
   useEffect(() => {
-    if (doneRecipes !== null && doneRecipes.length === 0) {
-      setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')));
-      /* setDoneRecipes([{
-        id: 'id-da-receita',
-        type: 'meal-ou-drink',
-        nationality: 'nacionalidade-da-receita-ou-texto-vazio',
-        category: 'categoria-da-receita-ou-texto-vazio',
-        alcoholicOrNot: 'alcoholic-ou-non-alcoholic-ou-texto-vazio',
-        name: 'nome-da-receita',
-        image: 'imagem-da-receita',
-        doneDate: 'quando-a-receita-foi-concluida',
-        tags: ['tag', 'tag2'],
-      }]); */
+    if (recipeToRender !== null && recipeToRender.length === 0) {
+      setRecipeToRender(doneRecipes);
     }
   });
 
-  const doneRecipesValid = doneRecipes !== null && doneRecipes.length > 0;
+  function handleClickFilter({ target }) {
+    if (target.name === 'reset') {
+      setRecipeToRender(doneRecipes);
+      return;
+    }
+    setRecipeToRender(
+      doneRecipes.filter((recipe) => recipe.type === target.name),
+    );
+  }
 
   return (
     <main>
       <Header history={ history } />
       <section>
-        <button data-testid="filter-by-all-btn" type="button">All</button>
-        <button data-testid="filter-by-meal-btn" type="button">Meals</button>
-        <button data-testid="filter-by-drink-btn" type="button">Drinks</button>
+        <button
+          onClick={ handleClickFilter }
+          data-testid="filter-by-all-btn"
+          type="button"
+          name="reset"
+        >
+          All
+        </button>
+        <button
+          onClick={ handleClickFilter }
+          data-testid="filter-by-meal-btn"
+          type="button"
+          name="meal"
+        >
+          Meals
+        </button>
+        <button
+          onClick={ handleClickFilter }
+          data-testid="filter-by-drink-btn"
+          type="button"
+          name="drink"
+        >
+          Drinks
+        </button>
       </section>
       <section>
-        { doneRecipesValid ? (
-          doneRecipes.map((recipe, index) => (
+        { (recipeToRender !== null && recipeToRender.length > 0) ? (
+          recipeToRender.map((recipe, index) => (
             <DoneRecipeCard key={ recipe.id } recipe={ recipe } index={ index } />
           ))
         ) : (

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import shareButton from '../images/shareIcon.svg';
 
 function DoneRecipeCard({ recipe, index }) {
-  console.log(recipe);
   if (recipe.type === 'meal') {
     return (
       <div>
