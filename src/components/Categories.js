@@ -29,7 +29,6 @@ function Categories({ dispatch, history, categories, selectedCategory }) {
         onClick={ () => { dispatch(getFirstRecipes(pathname)); } }
       >
         All
-
       </button>
     </section>
   );
@@ -42,8 +41,16 @@ const mapStateToProps = (state) => ({
 
 Categories.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  history: PropTypes.shape().isRequired,
-  categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      strCategory: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
   selectedCategory: PropTypes.string.isRequired,
 };
 
