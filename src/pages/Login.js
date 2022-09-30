@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useValidateLoginBtn from '../hooks/useValidateLoginBtn';
+import { saveLoginInfoLocalStorage } from '../helpers/localStorage';
 
 function Login(props) {
   const [email, setEmail] = useState('');
@@ -11,10 +12,7 @@ function Login(props) {
 
   const handleSubmit = () => {
     const { history } = props;
-
-    localStorage.setItem('user', JSON.stringify({ email }));
-    localStorage.setItem('mealsToken', JSON.stringify(1));
-    localStorage.setItem('drinksToken', JSON.stringify(1));
+    saveLoginInfoLocalStorage(email);
     history.push('/meals');
   };
 
@@ -58,6 +56,9 @@ function Login(props) {
 
 Login.propTypes = {
   history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
     push: PropTypes.func.isRequired,
   }).isRequired,
 };

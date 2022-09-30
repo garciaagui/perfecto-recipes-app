@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function RecipeCard({ recipes, history }) {
   const { location: { pathname } } = history;
@@ -41,7 +41,11 @@ const mapStateToProps = (state) => ({
 });
 
 RecipeCard.propTypes = {
-  history: PropTypes.shape().isRequired,
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
   recipes: PropTypes.arrayOf(PropTypes.shape().isRequired).isRequired,
 };
 

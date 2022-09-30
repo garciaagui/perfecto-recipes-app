@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getfavoriteRecipes, setfavoriteRecipes } from '../helpers/localStorage';
+import { getFavoriteRecipesLocalStorage,
+  setFavoriteRecipesLocalStorage } from '../helpers/localStorage';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function BtnFavorite({ history, recipeDetails }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const verifyPathname = history.location.pathname.includes('meals');
+
+  // Declaração das constantes que serão utilizadas no momento de salvar a receita no Local Storage
   const id = verifyPathname ? recipeDetails.idMeal : recipeDetails.idDrink;
   const type = verifyPathname ? 'meal' : 'drink';
   const nationality = verifyPathname ? recipeDetails.strArea : '';
@@ -17,28 +20,28 @@ function BtnFavorite({ history, recipeDetails }) {
   const image = verifyPathname ? recipeDetails.strMealThumb : recipeDetails.strDrinkThumb;
 
   // function checkFavorite() {
-  //   const local = getfavoriteRecipes();
+  //   const local = getFavoriteRecipesLocalStorage();
   //   const exis = local.some((receita) => receita.id === id);
   //   setIsFavorite(exis);
   // }
 
   useEffect(() => {
-    const local = getfavoriteRecipes();
+    const local = getFavoriteRecipesLocalStorage();
     const exis = local.some((receita) => receita.id === id);
     setIsFavorite(exis);
   }, [recipeDetails]);
 
   function setFavoriteRecipe() {
     const recipe = { id, type, nationality, category, alcoholicOrNot, name, image };
-    const local = getfavoriteRecipes();
+    const local = getFavoriteRecipesLocalStorage();
     const exist = local.some((receita) => receita.id === id);
     if (exist === false) {
       local.push(recipe);
-      setfavoriteRecipes(local);
+      setFavoriteRecipesLocalStorage(local);
       setIsFavorite(true);
     } else {
       const localFilter = local.filter((iten) => iten.id !== id);
-      setfavoriteRecipes(localFilter);
+      setFavoriteRecipesLocalStorage(localFilter);
       setIsFavorite(false);
     }
   }
@@ -64,8 +67,9 @@ const mapStateToProps = (state) => ({
 
 BtnFavorite.propTypes = {
   history: PropTypes.shape({
-    location: PropTypes.shape().isRequired,
-    push: PropTypes.func.isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
   recipeDetails: PropTypes.shape().isRequired,
 };

@@ -28,7 +28,12 @@ function Recipes({ history, dispatch }) {
 
 Recipes.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  history: PropTypes.shape().isRequired,
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+
 };
 
 export default connect()(Recipes);

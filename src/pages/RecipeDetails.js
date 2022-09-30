@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import getRecipeDetails from '../redux/actions/getRecipeDetails';
-import getRecommendedRecipes from '../redux/actions/getRecommendedRecipes';
 import Carousel from '../components/Carousel';
 import BtnFavorite from '../components/BtnFavorite';
+import getRecipeDetails from '../redux/actions/getRecipeDetails';
+import getRecommendedRecipes from '../redux/actions/getRecommendedRecipes';
 import { checkDoneRecipes, checkInProgresRecipes } from '../helpers/localStorage';
 
 function RecipeDetails({ history, dispatch,
@@ -96,7 +96,9 @@ const mapStateToProps = (state) => ({
 RecipeDetails.propTypes = {
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
-    location: PropTypes.shape().isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
     push: PropTypes.func.isRequired,
   }).isRequired,
   recipeDetails: PropTypes.shape().isRequired,

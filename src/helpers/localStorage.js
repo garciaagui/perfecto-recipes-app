@@ -1,3 +1,9 @@
+export function saveLoginInfoLocalStorage(email) {
+  localStorage.setItem('user', JSON.stringify({ email }));
+  localStorage.setItem('mealsToken', JSON.stringify(1));
+  localStorage.setItem('drinksToken', JSON.stringify(1));
+}
+
 export function getEmailLocalStorage() {
   const data = localStorage.getItem('user');
   if (data === null) {
@@ -31,7 +37,7 @@ export function checkInProgresRecipes(recipeId, recipeType) {
   return keys.some((key) => key === recipeId);
 }
 
-export function getfavoriteRecipes() {
+export function getFavoriteRecipesLocalStorage() {
   const data = localStorage.getItem('favoriteRecipes');
   if (data === null) {
     return [];
@@ -40,7 +46,7 @@ export function getfavoriteRecipes() {
   return retorno;
 }
 
-export function setfavoriteRecipes(favorites) {
+export function setFavoriteRecipesLocalStorage(favorites) {
   const data = JSON.stringify(favorites);
   localStorage.setItem('favoriteRecipes', data);
 }

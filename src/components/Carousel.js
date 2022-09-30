@@ -10,16 +10,7 @@ function Carousel({ history, recommendedRecipes }) {
   const strThumb = (pathname.includes('meals')) ? 'strDrinkThumb' : 'strMealThumb';
 
   return (
-    <div
-      style={ { height: '225px',
-        width: '360px',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'start',
-        alignItems: 'stretch',
-        flexWrap: 'nowrap',
-        overflowX: 'scroll' } }
-    >
+    <div className="carousel">
       { recommendedRecipes.map((recipe, index) => (
         <Card
           key={ recipe[id] }
@@ -44,13 +35,14 @@ function Carousel({ history, recommendedRecipes }) {
 }
 
 const mapStateToProps = (state) => ({
-  recipeDetails: state.detailsReducer.recipeDetails,
   recommendedRecipes: state.mainReducer.recommendedRecipes,
 });
 
 Carousel.propTypes = {
   history: PropTypes.shape({
-    location: PropTypes.shape().isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
   recommendedRecipes: PropTypes.arrayOf(PropTypes.shape().isRequired).isRequired,
 };

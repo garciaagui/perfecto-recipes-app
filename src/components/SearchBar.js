@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import filterSearchBar from '../redux/actions/filterSearchBar';
 
 function SearchBar({ history, dispatch, recipes, selectedCategory }) {
@@ -32,7 +32,6 @@ function SearchBar({ history, dispatch, recipes, selectedCategory }) {
   };
 
   const handleSearchClick = () => {
-    // const { location: { pathname } } = history;
     dispatch(filterSearchBar(searchData, pathname));
   };
 
@@ -96,7 +95,9 @@ const mapStateToProps = (state) => ({
 SearchBar.propTypes = {
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
-    location: PropTypes.shape().isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
     push: PropTypes.func.isRequired,
   }).isRequired,
   recipes: PropTypes.arrayOf(PropTypes.shape().isRequired).isRequired,
