@@ -2,26 +2,25 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
-import Meals from '../components/Meals';
-import Drinks from '../components/Drinks';
 import Footer from '../components/Footer';
 import Categories from '../components/Categories';
+import RecipeCard from '../components/RecipeCard';
 import getCategories from '../redux/actions/getCategories';
+import getFirstRecipes from '../redux/actions/getFirstRecipes';
 
 function Recipes({ history, dispatch }) {
   const { location: { pathname } } = history;
 
   useEffect(() => {
+    dispatch(getFirstRecipes(pathname));
     dispatch(getCategories(pathname));
   }, [pathname]);
-
-  const locationValid = pathname === '/meals';
 
   return (
     <div>
       <Header history={ history } />
       <Categories history={ history } />
-      { locationValid ? <Meals history={ history } /> : <Drinks history={ history } /> }
+      <RecipeCard history={ history } />
       <Footer />
     </div>
   );
@@ -29,7 +28,12 @@ function Recipes({ history, dispatch }) {
 
 Recipes.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  history: PropTypes.shape().isRequired,
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+
 };
 
 export default connect()(Recipes);

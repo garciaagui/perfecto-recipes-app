@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import filterSearchBar from '../redux/actions/filterSearchBar';
 
-function SearchBar({ history, dispatch, recipes, selectedCategory }) { // ao usar a funçao 'connect' que conecta o componente no redux ele adiciona nas props o dispatch
+function SearchBar({ history, dispatch, recipes, selectedCategory }) {
+  const { location: { pathname } } = history;
   const [searchData, setSearchData] = useState({
     searchInput: '',
     searchFilter: '',
   });
 
   useEffect(() => {
-    if (recipes !== false) {
-      const { location: { pathname } } = history;
-      if (recipes.meals !== null && pathname === '/meals'
-       && !selectedCategory.length && recipes.meals.length === 1) {
-        history.push(`${pathname}/${recipes.meals[0].idMeal}`);
-      }
-      if (recipes.drinks !== null && pathname === '/drinks'
-      && !selectedCategory.length && recipes.drinks.length === 1) {
-        history.push(`${pathname}/${recipes.drinks[0].idDrink}`);
-      }
+    const id = (pathname === '/meals') ? 'idMeal' : 'idDrink';
+    if (!selectedCategory.length && recipes.length === 1) {
+      history.push(`${pathname}/${recipes[0][id]}`);
     }
   }, [recipes]);
 
@@ -38,7 +32,6 @@ function SearchBar({ history, dispatch, recipes, selectedCategory }) { // ao usa
   };
 
   const handleSearchClick = () => {
-    const { location: { pathname } } = history;
     dispatch(filterSearchBar(searchData, pathname));
   };
 
@@ -102,10 +95,12 @@ const mapStateToProps = (state) => ({
 SearchBar.propTypes = {
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
-    location: PropTypes.shape().isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
     push: PropTypes.func.isRequired,
   }).isRequired,
-  recipes: PropTypes.bool.isRequired,
+  recipes: PropTypes.arrayOf(PropTypes.shape().isRequired).isRequired,
   selectedCategory: PropTypes.string.isRequired,
 };
 

@@ -7,6 +7,20 @@
   position: fixed;
 }
 
+.carousel {
+  align-items: stretch;
+  display: flex;
+  flex-flow: row nowrap;
+  height: 225px;
+  justify-content: start;
+  overflow-x: scroll;
+  width: 360px;
+}
+
+.useful-btns {
+  margin-bottom: 100px;
+}
+
 footer {
   background-color: lightblue;
   bottom: 0;

@@ -3,11 +3,11 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import App from '../App';
-import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
-import mockMealsFirstRecipes from './helpers/mockMealsFirstRecipes';
-import mockMealsCategoryBeef from './helpers/mockMealsCategoryBeef';
-import mockDrinksFirstRecipes from './helpers/mockDrinksFirstRecipes';
-import mockDrinksCategoryShake from './helpers/mockDrinksCategoryShake';
+import renderWithRouterAndRedux from '../helpers/renderWithRouterAndRedux';
+import mockMealsFirstRecipes from '../helpers/mocks/mockMealsFirstRecipes';
+import mockMealsCategoryBeef from '../helpers/mocks/mockMealsCategoryBeef';
+import mockDrinksFirstRecipes from '../helpers/mocks/mockDrinksFirstRecipes';
+import mockDrinksCategoryShake from '../helpers/mocks/mockDrinksCategoryShake';
 
 it('Verifica se 06 buttons são renderizados', async () => {
   renderWithRouterAndRedux(<App />, { initialEntries: ['/meals'] });

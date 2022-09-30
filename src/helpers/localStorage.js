@@ -1,4 +1,10 @@
-export default function getEmailLocalStorage() {
+export function saveLoginInfoLocalStorage(email) {
+  localStorage.setItem('user', JSON.stringify({ email }));
+  localStorage.setItem('mealsToken', JSON.stringify(1));
+  localStorage.setItem('drinksToken', JSON.stringify(1));
+}
+
+export function getEmailLocalStorage() {
   const data = localStorage.getItem('user');
   if (data === null) {
     return { email: 'faça login' };
@@ -29,4 +35,18 @@ export function checkInProgresRecipes(recipeId, recipeType) {
 
   const keys = Object.keys(inProgressRecipes[recipeType]);
   return keys.some((key) => key === recipeId);
+}
+
+export function getFavoriteRecipesLocalStorage() {
+  const data = localStorage.getItem('favoriteRecipes');
+  if (data === null) {
+    return [];
+  }
+  const retorno = JSON.parse(data);
+  return retorno;
+}
+
+export function setFavoriteRecipesLocalStorage(favorites) {
+  const data = JSON.stringify(favorites);
+  localStorage.setItem('favoriteRecipes', data);
 }
