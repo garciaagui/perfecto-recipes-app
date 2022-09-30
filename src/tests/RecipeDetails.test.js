@@ -63,10 +63,46 @@ it('Verifica a renderização da lista de ingredientes', async () => {
 
 it('Testa se o botão de Start redireciona para a tela de Recipe in Progress', async () => {
   const { history } = renderWithRouterAndRedux(<App />, { initialEntries: ['/drinks/15997'] });
+  const doneRecipes = [{
+    id: '52771',
+    type: 'meal',
+    nationality: 'Italian',
+    category: 'Vegetarian',
+    alcoholicOrNot: '',
+    name: 'Spicy Arrabiata Penne',
+    image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+    doneDate: '30/9/2022',
+    tags: ['Pasta', 'Curry'],
+  }];
+  localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+
   await waitFor(() => {
     userEvent.click(screen.getByTestId('start-recipe-btn'));
   });
 
-  const { pathname } = history.location;
-  expect(pathname).toBe('/drinks/15997/in-progress');
+  await waitFor(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/drinks/15997/in-progress');
+  });
+});
+
+it('Testa se o botão de Start não existe caso a receita já tenha sido concluída', async () => {
+  const doneRecipes = [{
+    id: '52771',
+    type: 'meal',
+    nationality: 'Italian',
+    category: 'Vegetarian',
+    alcoholicOrNot: '',
+    name: 'Spicy Arrabiata Penne',
+    image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+    doneDate: '30/9/2022',
+    tags: ['Pasta', 'Curry'],
+  }];
+  localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+
+  renderWithRouterAndRedux(<App />, { initialEntries: ['/meals/52771'] });
+
+  await waitFor(() => {
+    expect(screen.queryByTestId('start-recipe-btn')).not.toBeInTheDocument();
+  });
 });

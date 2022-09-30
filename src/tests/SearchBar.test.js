@@ -58,17 +58,18 @@ it('Verifica se na tela drinks o search bar funciona corretamente', async () => 
     expect(screen.getByTestId(ingredientSearchRadioStr)).toBeInTheDocument();
     expect(screen.getByTestId(nameSearchRadio)).toBeInTheDocument();
     expect(screen.getByTestId(firstLetterSearchRadio)).toBeInTheDocument();
-  }, 1000);
+  });
 
   const buttonSearch = screen.getByTestId(execSearchBtn);
   const searchInput = screen.getByTestId(searchInputStr);
   const ingredientRadio = screen.getByTestId(ingredientSearchRadioStr);
 
-  userEvent.type(searchInput, 'whisky');
+  userEvent.type(searchInput, 'vodka');
   userEvent.click(ingredientRadio);
   userEvent.click(buttonSearch);
 
   await waitFor(() => {
-    expect(screen.getByTestId(/recipe-title/i)).toBeInTheDocument();
+    expect(screen.getAllByTestId(/-card-img/i)).toHaveLength(12);
+    expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(12);
   });
 });
