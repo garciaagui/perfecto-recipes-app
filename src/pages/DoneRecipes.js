@@ -18,7 +18,7 @@ function DoneRecipes({ history }) {
         name: 'nome-da-receita',
         image: 'imagem-da-receita',
         doneDate: 'quando-a-receita-foi-concluida',
-        tags: ['tag1', 'tag2'],
+        tags: ['tag', 'tag2'],
       }]); */
     }
   });
