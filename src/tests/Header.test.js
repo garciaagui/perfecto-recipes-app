@@ -2,7 +2,7 @@ import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
+import renderWithRouterAndRedux from '../helpers/renderWithRouterAndRedux';
 
 const pageTitle = 'page-title';
 const profileTopBtn = 'profile-top-btn';

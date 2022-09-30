@@ -1,94 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { mountRecipeDetailsAPI } from '../redux/actions/RecipesDetailsAPI';
-import { filterIngredients,
-  filterIngredientsQuantity } from '../tests/helpers/filterIngredients';
-import { getfavoriteRecipes, setfavoriteRecipes,
-  checkDoneRecipes, checkInProgresRecipes } from '../tests/helpers/localStorage';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import PropTypes from 'prop-types';
+import getRecipeDetails from '../redux/actions/getRecipeDetails';
 import getRecommendedRecipes from '../redux/actions/getRecommendedRecipes';
 import Carousel from '../components/Carousel';
+import BtnFavorite from '../components/BtnFavorite';
+import { checkDoneRecipes, checkInProgresRecipes } from '../helpers/localStorage';
 
-function RecipeDetails({ history, dispatch, recipeDetails }) {
-  const [isFavorite, setIsFavorite] = useState(false);
-
+function RecipeDetails({ history, dispatch,
+  recipeDetails, ingredientsList, ingredientsQuantity }) {
   const { location: { pathname } } = history;
   const type = (pathname.includes('meals')) ? 'meals' : 'drinks';
   const id = (pathname.includes('meals')) ? 'idMeal' : 'idDrink';
   const str = (pathname.includes('meals')) ? 'strMeal' : 'strDrink';
   const strThumb = (pathname.includes('meals')) ? 'strMealThumb' : 'strDrinkThumb';
-  const ingredients = filterIngredients(recipeDetails);
-  const ingredientsQuantity = filterIngredientsQuantity(recipeDetails);
 
   useEffect(() => {
-    dispatch(mountRecipeDetailsAPI(pathname));
+    dispatch(getRecipeDetails(pathname));
     dispatch(getRecommendedRecipes(pathname));
   }, []);
-
-  function checkFavorite() {
-    const local = getfavoriteRecipes();
-    if (recipeDetails) {
-      const exis = local.some((receita) => receita.id === recipeDetails[id]);
-      setIsFavorite(exis);
-    }
-  }
-
-  function setFavoriteDrinks(item) {
-    const { idDrink, strCategory, strAlcoholic, strDrink, strDrinkThumb } = item;
-    const drink = {
-      id: idDrink,
-      type: 'drink',
-      nationality: '',
-      category: strCategory,
-      alcoholicOrNot: strAlcoholic,
-      name: strDrink,
-      image: strDrinkThumb,
-    };
-    const local = getfavoriteRecipes();
-    const exist = local.some((receita) => receita.id === drink.id);
-    if (exist === false) {
-      local.push(drink);
-      setfavoriteRecipes(local);
-      checkFavorite();
-    } else {
-      const localFilter = local.filter((iten) => iten.id !== drink.id);
-      setfavoriteRecipes(localFilter);
-      checkFavorite();
-    }
-  }
-
-  function setFavoriteMeal(item) {
-    const { idMeal, strCategory,
-      strMeal, strMealThumb, strArea } = item;
-    const meal = {
-      id: idMeal,
-      type: 'meal',
-      nationality: strArea,
-      category: strCategory,
-      alcoholicOrNot: '',
-      name: strMeal,
-      image: strMealThumb,
-    };
-    const local = getfavoriteRecipes();
-    const exist = local.some((receita) => receita.id === meal.id);
-    if (exist === false) {
-      local.push(meal);
-      setfavoriteRecipes(local);
-      checkFavorite();
-    } else {
-      const localFilter = local.filter((iten) => iten.id !== meal.id);
-      setfavoriteRecipes(localFilter);
-      checkFavorite();
-    }
-  }
-
-  useEffect(() => {
-    if (recipeDetails) {
-      checkFavorite();
-    }
-  }, [checkFavorite, recipeDetails]);
 
   function renderIngredientsMap(ingredient, index) {
     return (
@@ -115,7 +45,7 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
           style={ { height: '360px', width: '360px' } }
         />
         <ul>
-          { ingredients
+          { ingredientsList
             .map((ingredient, index) => renderIngredientsMap(ingredient, index)) }
         </ul>
         <p data-testid="instructions">
@@ -134,20 +64,7 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
       <Carousel history={ history } />
       <div className="useful-btns">
         <button data-testid="share-btn" type="button">Share</button>
-        <button
-          alt="icone favorite"
-          type="button"
-          onClick={ () => {
-            if (type === 'meals') setFavoriteMeal(recipeDetails);
-            else setFavoriteDrinks(recipeDetails);
-          } }
-        >
-          <img
-            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-            data-testid="favorite-btn"
-            alt="icone favorite"
-          />
-        </button>
+        <BtnFavorite history={ history } />
       </div>
       { checkDoneRecipes(recipeDetails[id])
         ? null
@@ -171,7 +88,9 @@ function RecipeDetails({ history, dispatch, recipeDetails }) {
 }
 
 const mapStateToProps = (state) => ({
-  recipeDetails: state.renderRecipeDetails.recipeDetails,
+  recipeDetails: state.detailsReducer.recipeDetails,
+  ingredientsList: state.detailsReducer.ingredientsList,
+  ingredientsQuantity: state.detailsReducer.ingredientsQuantity,
 });
 
 RecipeDetails.propTypes = {
@@ -181,6 +100,10 @@ RecipeDetails.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   recipeDetails: PropTypes.shape().isRequired,
+  ingredientsList: PropTypes
+    .arrayOf(PropTypes.string.isRequired).isRequired,
+  ingredientsQuantity: PropTypes
+    .arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
 export default connect(mapStateToProps)(RecipeDetails);

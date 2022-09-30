@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Categories from '../components/Categories';
+import RecipeCard from '../components/RecipeCard';
 import getCategories from '../redux/actions/getCategories';
 import getFirstRecipes from '../redux/actions/getFirstRecipes';
-import RecipeCard from '../components/RecipeCard';
 
 function Recipes({ history, dispatch }) {
   const { location: { pathname } } = history;

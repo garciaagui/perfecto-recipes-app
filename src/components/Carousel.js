@@ -1,11 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 function Carousel({ history, recommendedRecipes }) {
   const { location: { pathname } } = history;
-  // const type = (pathname.includes('meals')) ? 'drinks' : 'meals';
   const id = (pathname.includes('meals')) ? 'idDrink' : 'idMeal';
   const str = (pathname.includes('meals')) ? 'strDrink' : 'strMeal';
   const strThumb = (pathname.includes('meals')) ? 'strDrinkThumb' : 'strMealThumb';
@@ -45,7 +44,7 @@ function Carousel({ history, recommendedRecipes }) {
 }
 
 const mapStateToProps = (state) => ({
-  recipeDetails: state.renderRecipeDetails.recipeDetails,
+  recipeDetails: state.detailsReducer.recipeDetails,
   recommendedRecipes: state.mainReducer.recommendedRecipes,
 });
 

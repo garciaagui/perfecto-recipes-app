@@ -2,7 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
+import renderWithRouterAndRedux from '../helpers/renderWithRouterAndRedux';
 
 it('reliza login e push a profile', async () => {
   const { history } = renderWithRouterAndRedux(<App />);

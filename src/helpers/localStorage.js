@@ -1,4 +1,4 @@
-export default function getEmailLocalStorage() {
+export function getEmailLocalStorage() {
   const data = localStorage.getItem('user');
   if (data === null) {
     return { email: 'faça login' };
