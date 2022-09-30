@@ -5,17 +5,17 @@ import {
   GET_RECOMMENDED_RECIPES } from '../actions/types';
 
 const INITIAL_STATE = {
-  recipes: false,
+  recipes: [],
   categories: [],
   selectedCategory: '',
-  recommendedRecipes: {},
+  recommendedRecipes: [],
 };
 
 function mainReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
   case GET_RECIPES: return {
     ...state,
-    recipes: action.payload.data,
+    recipes: action.payload,
     selectedCategory: '',
   };
   case GET_RECIPES_BY_CATEGORY: return {
@@ -29,7 +29,7 @@ function mainReducer(state = INITIAL_STATE, action) {
   };
   case GET_RECOMMENDED_RECIPES: return {
     ...state,
-    recommendedRecipes: action.payload.data,
+    recommendedRecipes: action.payload,
   };
   default: return state;
   }

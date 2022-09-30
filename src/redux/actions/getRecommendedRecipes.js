@@ -1,19 +1,18 @@
 import { GET_RECOMMENDED_RECIPES } from './types';
 
-function getRecommendedRecipes(history) {
-  const { location: { pathname } } = history;
-  const toSliceNum = 6;
-  const fetchURL = (pathname.slice(0, toSliceNum) === '/meals') ? ('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
-    : ('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+function getRecommendedRecipes(pathname) {
+  const recipeDB = (pathname.includes('meals')) ? 'thecocktaildb' : 'themealdb';
+  const fetchURL = `https://www.${recipeDB}.com/api/json/v1/1/search.php?s=`;
+  const type = (pathname.includes('meals')) ? 'drinks' : 'meals';
+
+  const LIMIT = 6;
 
   return async (dispatch) => {
     const response = await fetch(fetchURL);
     const data = await response.json();
     dispatch({
       type: GET_RECOMMENDED_RECIPES,
-      payload: {
-        data,
-      },
+      payload: data[type].slice(0, LIMIT),
     });
   };
 }

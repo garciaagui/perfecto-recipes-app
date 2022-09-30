@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import getEmailLocalStorage, { clearLocalStorage } from '../tests/helpers/localStorage';
+import { getEmailLocalStorage, clearLocalStorage } from '../helpers/localStorage';
 
 function Profile({ history }) {
   const [user, setUser] = useState({ email: 'seu email' });
