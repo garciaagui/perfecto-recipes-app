@@ -7,7 +7,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import setRecipesFavorite from '../redux/actions/favoriteRecipes';
 
-function BtnDesfavorite({ recipe, dispatch }) {
+function BtnDesfavorite({ recipe, index, dispatch }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   // function checkFavorite() {
@@ -45,7 +45,7 @@ function BtnDesfavorite({ recipe, dispatch }) {
     >
       <img
         src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-        data-testid="favorite-btn"
+        data-testid={ `${index}-horizontal-favorite-btn` }
         alt="icone favorite"
       />
     </button>

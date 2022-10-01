@@ -27,7 +27,10 @@ function FavoriteCard({ recipe, index }) {
             alt="Share Button"
           />
         </button>
-        <BtnDesfavorite recipe={ recipe } />
+        <BtnDesfavorite
+          recipe={ recipe }
+          index={ index }
+        />
       </div>
     );
   } return (
@@ -49,7 +52,10 @@ function FavoriteCard({ recipe, index }) {
           alt="Share Button"
         />
       </button>
-      <BtnDesfavorite recipe={ recipe } />
+      <BtnDesfavorite
+        recipe={ recipe }
+        index={ index }
+      />
     </div>
   );
 }
