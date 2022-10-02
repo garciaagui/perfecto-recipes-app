@@ -57,7 +57,6 @@ function RecipeInProgress({ history, dispatch,
           <input
             type="checkbox"
             id={ `${index}-ingredient-step` }
-            data-testid={ `${index}-ingredient-step` }
             checked={ checkedIngredients[index] === undefined
               ? false : checkedIngredients[index] }
             onChange={ () => { handleCheckChange(index); } }
