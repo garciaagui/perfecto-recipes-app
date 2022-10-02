@@ -17,6 +17,11 @@
   width: 360px;
 }
 
+.checked-ingredient {
+  text-decoration: line-through;
+  color: grey;
+}
+
 .useful-btns {
   margin-bottom: 100px;
 }
