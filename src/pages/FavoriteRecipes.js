@@ -10,11 +10,9 @@ function FavoriteRecipes({ history, favoriteRecipes, dispatch }) {
   useEffect(() => {
     const receitas = getFavoriteRecipesLocalStorage();
     dispatch(setRecipesFavorite(receitas));
-    console.log(receitas);
   }, []);
 
   function deleteFilters() {
-    console.log('xablau');
     const receitas = getFavoriteRecipesLocalStorage();
     dispatch(setRecipesFavorite(receitas));
   }
@@ -61,6 +59,7 @@ function FavoriteRecipes({ history, favoriteRecipes, dispatch }) {
             key={ index }
             recipe={ recipe }
             index={ index }
+            history={ history }
           />
         ))
         : <p>opa! não temos receitas</p>}
