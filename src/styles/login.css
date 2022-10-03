@@ -1,5 +1,5 @@
 * {
-  background-color: rgb(253, 239, 217);
+  background-color: white;
 }
 
 form {
@@ -32,8 +32,8 @@ form img {
 }
 
 .container-input input:focus {
-  border-color: rgb(80, 49, 6);
-  box-shadow: 0 0.01rem rgb(221, 217, 253);
+  border-color: rgb(157, 20, 8);
+  box-shadow: 0 0.01rem white;
   color: #212529;
   outline: 0;
 }

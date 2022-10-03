@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useValidateLoginBtn from '../hooks/useValidateLoginBtn';
 import { saveLoginInfoLocalStorage } from '../helpers/localStorage';
-import logotipo from '../images/logotipo.jpg';
+import logotipo from '../images/new-logotipo.png';
 import '../styles/login.css';
 
 function Login(props) {
@@ -50,7 +50,7 @@ function Login(props) {
       <button
         type="submit"
         data-testid="login-submit-btn"
-        className="btn btn-dark btn-lg"
+        className="btn btn-primary btn-lg"
         disabled={ isLoginBtnDisabled }
         onClick={ handleSubmit }
       >
