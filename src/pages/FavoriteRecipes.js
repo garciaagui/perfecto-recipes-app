@@ -10,14 +10,50 @@ function FavoriteRecipes({ history, favoriteRecipes, dispatch }) {
   useEffect(() => {
     const receitas = getFavoriteRecipesLocalStorage();
     dispatch(setRecipesFavorite(receitas));
+    console.log(receitas);
   }, []);
-  console.log(favoriteRecipes);
+
+  function deleteFilters() {
+    const receitas = getFavoriteRecipesLocalStorage();
+    dispatch(setRecipesFavorite(receitas));
+  }
+
+  function mealFilters() {
+    const receitas = getFavoriteRecipesLocalStorage();
+    const receitasFilter = receitas.filter((receit) => receit.type === 'meal');
+    dispatch(setRecipesFavorite(receitasFilter));
+  }
+
+  function drinkFilters() {
+    const receitas = getFavoriteRecipesLocalStorage();
+    const receitasFilter = receitas.filter((receit) => receit.type === 'drink');
+    dispatch(setRecipesFavorite(receitasFilter));
+  }
+
   return (
     <div>
       <Header history={ history } />
-      <button type="button" data-testid="filter-by-all-btn">All</button>
-      <button type="button" data-testid="filter-by-meal-btn">Meals</button>
-      <button type="button" data-testid="filter-by-drink-btn">Drinks</button>
+      <button
+        type="button"
+        data-testid="filter-by-all-btn"
+        onClick={ () => deleteFilters() }
+      >
+        All
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-meal-btn"
+        onClick={ () => mealFilters() }
+      >
+        Meals
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-drink-btn"
+        onClick={ () => drinkFilters() }
+      >
+        Drinks
+      </button>
       {favoriteRecipes.length > 0
         ? favoriteRecipes.map((recipe, index) => (
           <FavoriteCard
