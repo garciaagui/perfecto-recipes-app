@@ -31,6 +31,8 @@ function RecipeInProgress({ history, dispatch,
       }, []));
   }, [recipeDetails]);
 
+  console.log(checkedIngredients);
+
   const handleCheckChange = (index) => {
     const newArr = checkedIngredients.reduce((acc, curr, i) => {
       if (i === index) {
@@ -57,9 +59,8 @@ function RecipeInProgress({ history, dispatch,
           <input
             type="checkbox"
             id={ `${index}-ingredient-step` }
-            checked={ checkedIngredients[index] === undefined
-              ? false : checkedIngredients[index] }
-            onChange={ () => { handleCheckChange(index); } }
+            defaultChecked={ checkedIngredients[index] }
+            onClick={ () => { handleCheckChange(index); } }
           />
           <span>
             {`${ingredient} - ${ingredientsQuantity[index]}`}

@@ -31,7 +31,8 @@ export function checkDoneRecipesLocalStorage(recipeId) {
 
 export function checkInProgressRecipesLocalStorage(recipeId, recipeType) {
   const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  if (!inProgressRecipes) return false;
+  console.log(inProgressRecipes);
+  if (!inProgressRecipes || inProgressRecipes === undefined) return false;
 
   const keys = Object.keys(inProgressRecipes[recipeType]);
   return keys.some((key) => key === recipeId);
@@ -55,11 +56,15 @@ export function setInProgressRecipesLocalStorage(recipeId, recipeType) {
 }
 
 export function updateInProgressRecipesLocalStorage(id, type, index, isChecked) {
+  console.log(index, isChecked);
   const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  if (isChecked) inProgressRecipes[type][id].push(index);
-  else {
+  console.log(inProgressRecipes[type][id]);
+  if (isChecked) {
+    inProgressRecipes[type][id].push(index);
+  } else {
     inProgressRecipes[type][id]
-      .splice(inProgressRecipes[type][id].indexOf(index));
+      .splice(inProgressRecipes[type][id].indexOf(index), 1);
+    // inProgressRecipes[type][id].filter((el) => el === index);
   }
   localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
 }
