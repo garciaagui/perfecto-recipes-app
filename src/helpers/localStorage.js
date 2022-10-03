@@ -31,7 +31,6 @@ export function checkDoneRecipesLocalStorage(recipeId) {
 
 export function checkInProgressRecipesLocalStorage(recipeId, recipeType) {
   const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  console.log(inProgressRecipes);
   if (!inProgressRecipes || inProgressRecipes === undefined) return false;
 
   const keys = Object.keys(inProgressRecipes[recipeType]);

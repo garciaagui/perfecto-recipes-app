@@ -18,8 +18,8 @@
 }
 
 .checked-ingredient {
-  text-decoration: line-through;
   color: grey;
+  text-decoration: line-through;
 }
 
 .useful-btns {

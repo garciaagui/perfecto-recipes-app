@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import BtnFavorite from '../components/BtnFavorite';
+import ButtonShare from '../components/ButtonShare';
 import getRecipeDetails from '../redux/actions/getRecipeDetails';
 import { setInProgressRecipesLocalStorage,
   updateInProgressRecipesLocalStorage,
@@ -30,8 +31,6 @@ function RecipeInProgress({ history, dispatch,
         return acc;
       }, []));
   }, [recipeDetails]);
-
-  console.log(checkedIngredients);
 
   const handleCheckChange = (index) => {
     const newArr = checkedIngredients.reduce((acc, curr, i) => {
@@ -92,8 +91,14 @@ function RecipeInProgress({ history, dispatch,
         </p>
       </div>
       <div className="useful-btns">
-        <button data-testid="share-btn" type="button">Share</button>
+        {/* <button data-testid="share-btn" type="button">Share</button> */}
         <BtnFavorite history={ history } />
+        <ButtonShare
+          type={ recipeDetails.type }
+          id={ idReceita }
+          history={ history }
+          dataTestId="share-btn"
+        />
       </div>
       <button
         data-testid="finish-recipe-btn"
