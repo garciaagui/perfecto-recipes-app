@@ -84,7 +84,7 @@ function SearchBar({ history, dispatch, recipes, selectedCategory }) {
       <button
         onClick={ handleSearchClick }
         data-testid="exec-search-btn"
-        className="btn btn-success btn-sm"
+        className="btn btn-primary btn-sm"
         type="button"
       >
         Search

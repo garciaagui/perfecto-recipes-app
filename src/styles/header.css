@@ -1,13 +1,21 @@
 header {
   align-items: center;
+  background-color: rgb(157, 20, 8);
   border: 1px black;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 30px;
+  padding: 10px 0;
+  /* position: sticky;
+  top: 0; */
+}
+
+header * {
+  background-color: rgb(157, 20, 8);
 }
 
 header h1 {
+  color: white;
   font-weight: 900;
   margin: 0;
 }
@@ -17,12 +25,18 @@ header button {
 }
 
 header img {
-  height: 35px;
-  width: 65px;
+  border-radius: 50%;
+  width: 50px;
+}
+
+header a {
+  background-color: rgb(157, 20, 8);
 }
 
 .container-header-btns img {
-  height: 30px;
-  width: 30px;
+  background-color: rgb(254, 251, 246);
+  border-radius: 40%;
+  height: 35px;
+  padding: 5px;
+  width: 35px;
 }
-

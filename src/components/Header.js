@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
-import smallLogotipo from '../images/logotipo-small-black.jpg';
+import logotipo from '../images/logotipo-img-only.png';
 import '../styles/header.css';
 
 function Header({ history }) {
@@ -26,7 +26,7 @@ function Header({ history }) {
   case '/meals':
     return (
       <header>
-        <img src={ smallLogotipo } alt="small-logotipo" className="small" />
+        <img src={ logotipo } alt="small-logotipo" className="small" />
         <h1 data-testid="page-title">Meals</h1>
         <section className="container-header-btns">
           <Link to="/profile">
@@ -55,7 +55,7 @@ function Header({ history }) {
   case '/drinks':
     return (
       <header>
-        <img src={ smallLogotipo } alt="small-logotipo" className="small" />
+        <img src={ logotipo } alt="small-logotipo" className="small" />
         <h1 data-testid="page-title">Drinks</h1>
         <section className="container-header-btns">
           <Link to="/profile">

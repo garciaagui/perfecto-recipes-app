@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useValidateLoginBtn from '../hooks/useValidateLoginBtn';
 import { saveLoginInfoLocalStorage } from '../helpers/localStorage';
-import logotipo from '../images/new-logotipo.png';
+import logotipo from '../images/logotipo-complete.png';
 import '../styles/login.css';
 
 function Login(props) {

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 20px 20px 0;
+  margin: 20px 20px 5px;
   width: 100%;
 }
 
@@ -11,6 +11,7 @@
 }
 
 .container-radio-btns {
+  color: white;
   display: flex;
   flex-direction: row;
   font-size: 15px;
