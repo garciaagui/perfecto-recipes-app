@@ -8,25 +8,27 @@ it('Verifica se a tela Done Recipes renderiza corretamente', async () => {
   const { history } = renderWithRouterAndRedux(<App />);
   const doneRecipeURL = '/done-recipes';
 
-  localStorage.setItem('doneRecipes', JSON.stringify([{
-    id: '52882',
-    type: 'meal',
-    nationality: 'nacionalidade-da-receita-ou-texto-vazio',
-    category: 'categoria-da-receita-ou-texto-vazio',
-    alcoholicOrNot: 'alcoholic-ou-non-alcoholic-ou-texto-vazio',
-    name: 'nome-da-receita',
-    image: 'imagem-da-receita',
-    doneDate: 'quando-a-receita-foi-concluida',
-    tags: ['tag1'] }, {
-    id: '17256',
-    type: 'drink',
-    nationality: 'nacionalidade-da-receita-ou-texto-vazio',
-    category: 'categoria-da-receita-ou-texto-vazio',
-    alcoholicOrNot: 'alcoholic-ou-non-alcoholic-ou-texto-vazio',
-    name: 'nome-da-receita',
-    image: 'imagem-da-receita',
-    doneDate: 'quando-a-receita-foi-concluida',
-    tags: ['tag1'] }]));
+  localStorage.setItem('doneRecipes', JSON.stringify([
+    {
+      id: '52882',
+      type: 'meal',
+      nationality: 'nacionalidade-da-receita-ou-texto-vazio',
+      category: 'categoria-da-receita-ou-texto-vazio',
+      alcoholicOrNot: 'alcoholic-ou-non-alcoholic-ou-texto-vazio',
+      name: 'nome-da-receita',
+      image: 'imagem-da-receita',
+      doneDate: 'quando-a-receita-foi-concluida',
+      tags: ['tag1'] },
+    {
+      id: '17256',
+      type: 'drink',
+      nationality: 'nacionalidade-da-receita-ou-texto-vazio',
+      category: 'categoria-da-receita-ou-texto-vazio',
+      alcoholicOrNot: 'alcoholic-ou-non-alcoholic-ou-texto-vazio',
+      name: 'nome-da-receita',
+      image: 'imagem-da-receita',
+      doneDate: 'quando-a-receita-foi-concluida',
+      tags: ['tag1'] }]));
 
   history.push(doneRecipeURL);
 

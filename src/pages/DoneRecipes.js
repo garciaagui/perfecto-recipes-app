@@ -58,6 +58,7 @@ function DoneRecipes({ history }) {
         { (recipeToRender !== null && recipeToRender.length > 0) ? (
           recipeToRender.map((recipe, index) => (
             <DoneRecipeCard
+              history={ history }
               key={ recipe.id }
               recipe={ recipe }
               index={ index }

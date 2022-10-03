@@ -1,17 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import shareButton from '../images/shareIcon.svg';
+import ButtonShare from './ButtonShare';
 
-function DoneRecipeCard({ recipe, index }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleClickShare = async () => {
-    const url = (recipe.type === 'meal') ? `meals/${recipe.id}` : `drinks/${recipe.id}`;
-    await navigator.clipboard.writeText(`http://localhost:3000/${url}`);
-    setCopied(true);
-  };
-
+function DoneRecipeCard({ history, recipe, index }) {
   if (recipe.type === 'meal') {
     return (
       <div>
@@ -33,17 +25,13 @@ function DoneRecipeCard({ recipe, index }) {
         { recipe.tags.map((tag) => (
           <p data-testid={ `${index}-${tag}-horizontal-tag` } key={ tag }>{tag}</p>
         )) }
-        <button
-          type="button"
-          onClick={ handleClickShare }
-        >
-          <img
-            data-testid={ `${index}-horizontal-share-btn` }
-            src={ shareButton }
-            alt="Share Button"
-          />
-        </button>
-        { copied && <span>Link copied!</span> }
+        <ButtonShare
+          type={ recipe.type }
+          id={ recipe.id }
+          history={ history }
+          index={ index }
+          dataTestId="-horizontal-share-btn"
+        />
       </div>
     );
   } return (
@@ -62,16 +50,13 @@ function DoneRecipeCard({ recipe, index }) {
       { recipe.tags.map((tag) => (
         <p data-testid={ `${index}-${tag}-horizontal-tag` } key={ tag }>{tag}</p>
       )) }
-      <button
-        type="button"
-      >
-        <img
-          data-testid={ `${index}-horizontal-share-btn` }
-          src={ shareButton }
-          alt="Share Button"
-        />
-      </button>
-      { copied && <span>Link copied!</span> }
+      <ButtonShare
+        type={ recipe.type }
+        id={ recipe.id }
+        history={ history }
+        index={ index }
+        dataTestId="-horizontal-share-btn"
+      />
     </div>
   );
 }
@@ -79,6 +64,7 @@ function DoneRecipeCard({ recipe, index }) {
 DoneRecipeCard.propTypes = {
   recipe: PropTypes.shape().isRequired,
   index: PropTypes.number.isRequired,
+  history: PropTypes.shape().isRequired,
 };
 
 export default DoneRecipeCard;
