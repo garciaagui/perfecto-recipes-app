@@ -14,6 +14,7 @@ function FavoriteRecipes({ history, favoriteRecipes, dispatch }) {
   }, []);
 
   function deleteFilters() {
+    console.log('xablau');
     const receitas = getFavoriteRecipesLocalStorage();
     dispatch(setRecipesFavorite(receitas));
   }
