@@ -15,8 +15,8 @@ function FavoriteCard({ recipe, index }) {
             src={ recipe.image }
             alt={ recipe.name }
           />
+          <h2 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h2>
         </Link>
-        <h2 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h2>
         <h3
           data-testid={ `${index}-horizontal-top-text` }
         >
@@ -46,8 +46,8 @@ function FavoriteCard({ recipe, index }) {
           src={ recipe.image }
           alt={ recipe.name }
         />
+        <h2 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h2>
       </Link>
-      <h2 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h2>
       <h3 data-testid={ `${index}-horizontal-top-text` }>{recipe.alcoholicOrNot}</h3>
       <h4 data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</h4>
       <button
