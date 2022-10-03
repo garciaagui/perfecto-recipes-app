@@ -19,8 +19,6 @@ function RecipeDetails({ history, dispatch,
   const str = (pathname.includes('meals')) ? 'strMeal' : 'strDrink';
   const strThumb = (pathname.includes('meals')) ? 'strMealThumb' : 'strDrinkThumb';
   const buttonType = (pathname.includes('meals')) ? 'meal' : 'drink';
-  const { idReceita } = useParams();
-  console.log(idReceita);
 
   useEffect(() => {
     dispatch(getRecipeDetails(pathname, idReceita));
