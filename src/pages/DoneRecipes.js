@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import DoneRecipeCard from '../components/DoneRecipeCard';
@@ -9,9 +9,11 @@ function DoneRecipes({ history }) {
   );
   const [recipeToRender, setRecipeToRender] = useState([]);
 
-  if (recipeToRender !== null && recipeToRender.length === 0) {
-    setRecipeToRender(doneRecipes);
-  }
+  useEffect(() => {
+    if (recipeToRender !== null && recipeToRender.length === 0) {
+      setRecipeToRender(doneRecipes);
+    }
+  }, [recipeToRender]);
 
   function handleClickFilter({ target }) {
     if (target.name === 'reset') {

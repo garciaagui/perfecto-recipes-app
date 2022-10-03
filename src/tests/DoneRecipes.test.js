@@ -31,7 +31,7 @@ it('Verifica se a tela Done Recipes renderiza corretamente', async () => {
   history.push(doneRecipeURL);
 
   expect(screen.getByTestId('page-title')).toBeInTheDocument();
-  expect(screen.getAllByRole('link')).toHaveLength(3);
+  expect(screen.getAllByRole('link')).toHaveLength(1);
   userEvent.click(screen.getByTestId('profile-top-btn'));
 
   await waitFor(() => {
