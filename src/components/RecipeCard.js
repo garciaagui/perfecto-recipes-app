@@ -10,7 +10,7 @@ function RecipeCard({ recipes, history }) {
   const strThumb = (pathname === '/meals') ? 'strMealThumb' : 'strDrinkThumb';
 
   return (
-    <section>
+    <section className="container-recipes">
       {recipes.length
         // ? global.alert('Sorry, we haven\'t found any recipes for these filters.')
         && recipes.map((recipe, index) => (

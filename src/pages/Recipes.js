@@ -7,6 +7,7 @@ import Categories from '../components/Categories';
 import RecipeCard from '../components/RecipeCard';
 import getCategories from '../redux/actions/getCategories';
 import getFirstRecipes from '../redux/actions/getFirstRecipes';
+import '../styles/recipes.css';
 
 function Recipes({ history, dispatch }) {
   const { location: { pathname } } = history;
