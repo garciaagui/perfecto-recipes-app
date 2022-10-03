@@ -1,35 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import filterByCategory from '../redux/actions/filterByCategory';
 import getFirstRecipes from '../redux/actions/getFirstRecipes';
+import '../styles/categories.css';
 
 function Categories({ dispatch, history, categories, selectedCategory }) {
   const { location: { pathname } } = history;
+  const [isCategoriesOn, setIsCategoriesOn] = useState(true);
 
   return (
-    <section>
-      {categories.map(({ strCategory }, index) => (
-        <button
-          key={ index }
-          data-testid={ `${strCategory}-category-filter` }
-          type="button"
-          onClick={ () => {
-            if (selectedCategory !== strCategory) {
-              dispatch(filterByCategory(pathname, strCategory));
-            } else dispatch(getFirstRecipes(pathname));
-          } }
-        >
-          {strCategory}
-        </button>
-      ))}
-      <button
-        type="button"
-        data-testid="All-category-filter"
-        onClick={ () => { dispatch(getFirstRecipes(pathname)); } }
-      >
-        All
-      </button>
+    <section className="container-categories">
+      {isCategoriesOn
+        ? (
+          <section>
+            <button
+              type="button"
+              className="btn btn-secondary btn-sm"
+              onClick={ () => { setIsCategoriesOn(!isCategoriesOn); } }
+            >
+              Hide Categories
+            </button>
+            {categories.map(({ strCategory }, index) => (
+              <button
+                key={ index }
+                data-testid={ `${strCategory}-category-filter` }
+                type="button"
+                className="btn btn-outline-secondary btn-sm"
+                onClick={ () => {
+                  if (selectedCategory !== strCategory) {
+                    dispatch(filterByCategory(pathname, strCategory));
+                  } else dispatch(getFirstRecipes(pathname));
+                } }
+              >
+                {strCategory}
+              </button>
+            ))}
+            <button
+              type="button"
+              data-testid="All-category-filter"
+              className="btn btn-outline-secondary btn-sm"
+              onClick={ () => { dispatch(getFirstRecipes(pathname)); } }
+            >
+              All
+            </button>
+          </section>
+        ) : (
+          <button
+            type="button"
+            className="btn btn-secondary btn-sm"
+            onClick={ () => { setIsCategoriesOn(!isCategoriesOn); } }
+          >
+            Show Categories
+          </button>
+        ) }
+
     </section>
   );
 }

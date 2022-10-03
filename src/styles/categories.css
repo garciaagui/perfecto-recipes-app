@@ -1,0 +1,10 @@
+.container-categories {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.container-categories button {
+  margin-bottom: 5px;
+  width: 100%;
+}
