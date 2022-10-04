@@ -100,7 +100,7 @@ function Header({ history }) {
     return (
       <header>
         <img src={ logotipo } alt="small-logotipo" className="small" />
-        <h1 data-testid="page-title">Done Recipes</h1>
+        <h1 data-testid="page-title" className="specific-titles">Done Recipes</h1>
         <section className="container-header-btns">
           <Link to="/profile">
             <img
@@ -116,7 +116,7 @@ function Header({ history }) {
     return (
       <header>
         <img src={ logotipo } alt="small-logotipo" className="small" />
-        <h1 data-testid="page-title" className="favorite-title">Favorite Recipes</h1>
+        <h1 data-testid="page-title" className="specific-titles">Favorite Recipes</h1>
         <section className="container-header-btns">
           <Link to="/profile">
             <img

@@ -69,7 +69,7 @@ function FavoriteRecipes({ history, favoriteRecipes, dispatch }) {
               history={ history }
             />
           ))
-          : <p>opa! não temos receitas</p>}
+          : <span>No favorite recipes found</span>}
       </section>
     </section>
   );

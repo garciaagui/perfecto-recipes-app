@@ -28,7 +28,7 @@ function Profile({ history }) {
   return (
     <div>
       <Header history={ history } />
-      <main>
+      <main className="main-container-profile">
         <h4>E-mail</h4>
         <h3
           data-testid="profile-email"
