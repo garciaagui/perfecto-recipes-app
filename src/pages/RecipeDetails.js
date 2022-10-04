@@ -1,22 +1,27 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import Carousel from '../components/Carousel';
 import BtnFavorite from '../components/BtnFavorite';
 import getRecipeDetails from '../redux/actions/getRecipeDetails';
 import getRecommendedRecipes from '../redux/actions/getRecommendedRecipes';
-import { checkDoneRecipes, checkInProgresRecipes } from '../helpers/localStorage';
+import { checkDoneRecipesLocalStorage,
+  checkInProgressRecipesLocalStorage } from '../helpers/localStorage';
+import ButtonShare from '../components/ButtonShare';
 
 function RecipeDetails({ history, dispatch,
   recipeDetails, ingredientsList, ingredientsQuantity }) {
   const { location: { pathname } } = history;
+  const { idReceita } = useParams();
   const type = (pathname.includes('meals')) ? 'meals' : 'drinks';
   const id = (pathname.includes('meals')) ? 'idMeal' : 'idDrink';
   const str = (pathname.includes('meals')) ? 'strMeal' : 'strDrink';
   const strThumb = (pathname.includes('meals')) ? 'strMealThumb' : 'strDrinkThumb';
+  const buttonType = (pathname.includes('meals')) ? 'meal' : 'drink';
 
   useEffect(() => {
-    dispatch(getRecipeDetails(pathname));
+    dispatch(getRecipeDetails(pathname, idReceita));
     dispatch(getRecommendedRecipes(pathname));
   }, []);
 
@@ -63,10 +68,15 @@ function RecipeDetails({ history, dispatch,
       </div>
       <Carousel history={ history } />
       <div className="useful-btns">
-        <button data-testid="share-btn" type="button">Share</button>
+        <ButtonShare
+          history={ history }
+          dataTestId="share-btn"
+          type={ buttonType }
+          id={ idReceita }
+        />
         <BtnFavorite history={ history } />
       </div>
-      { checkDoneRecipes(recipeDetails[id])
+      { checkDoneRecipesLocalStorage(recipeDetails[id])
         ? null
         : (
           <button
@@ -78,7 +88,7 @@ function RecipeDetails({ history, dispatch,
                 .push(`${pathname}/in-progress`)
             }
           >
-            {checkInProgresRecipes(recipeDetails[id], type)
+            {checkInProgressRecipesLocalStorage(recipeDetails[id], type)
               ? 'Continue Recipe'
               : 'Start Recipe'}
           </button>

@@ -6,7 +6,6 @@ import FavoriteRecipes from './pages/FavoriteRecipes';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
-// import RecipeDetails from './pages/RecipeDetails';
 import RecipeDetails from './pages/RecipeDetails';
 import RecipeInProgress from './pages/RecipeInProgress';
 import Recipes from './pages/Recipes';
