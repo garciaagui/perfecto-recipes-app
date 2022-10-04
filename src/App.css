@@ -2,26 +2,7 @@
   font-family: Montserrat , sans-serif;
 }
 
-.start-recipe-btn {
-  bottom: 0;
-  position: fixed;
-}
-
-.carousel {
-  align-items: stretch;
-  display: flex;
-  flex-flow: row nowrap;
-  height: 225px;
-  justify-content: start;
-  overflow-x: scroll;
-  width: 360px;
-}
-
 .checked-ingredient {
   color: grey;
   text-decoration: line-through;
-}
-
-.useful-btns {
-  margin-bottom: 100px;
 }

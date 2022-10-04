@@ -15,16 +15,16 @@ function Carousel({ history, recommendedRecipes }) {
         <Card
           key={ recipe[id] }
           data-testid={ `${index}-recommendation-card` }
-          style={ { minWidth: '190px' } }
+          style={ { minWidth: '175px', display: 'flex', justifyContent: 'center' } }
         >
           <Card.Img
             variant="top"
             src={ recipe[strThumb] }
-            style={ { width: 'auto' } }
+            style={ { marginBottom: '18px' } }
           />
           <Card.Title
             data-testid={ `${index}-recommendation-title` }
-            style={ { width: 'auto' } }
+            style={ { width: '100%', textAlign: 'center' } }
           >
             { recipe[str] }
           </Card.Title>
