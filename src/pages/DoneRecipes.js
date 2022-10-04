@@ -11,10 +11,10 @@ function DoneRecipes({ history }) {
   const [recipeToRender, setRecipeToRender] = useState([]);
 
   useEffect(() => {
-    if (recipeToRender !== null && recipeToRender.length === 0) {
+    if (recipeToRender && !recipeToRender.length) {
       setRecipeToRender(doneRecipes);
     }
-  }, [recipeToRender]);
+  }, []);
 
   function handleClickFilter({ target }) {
     if (target.name === 'reset') {
@@ -60,7 +60,7 @@ function DoneRecipes({ history }) {
           </button>
         </section>
         <section>
-          { (recipeToRender !== null && recipeToRender.length > 0) ? (
+          { recipeToRender && recipeToRender.length > 0 ? (
             recipeToRender.map((recipe, index) => (
               <DoneRecipeCard
                 history={ history }
