@@ -28,6 +28,9 @@ function RecipeCard({ recipes, history }) {
                 data-testid={ `${index}-card-img` }
               />
               <h2 data-testid={ `${index}-card-name` }>{recipe[str]}</h2>
+              {/* <h3>
+                {recipe.strCategory}
+              </h3> */}
             </div>
           </Link>
 
