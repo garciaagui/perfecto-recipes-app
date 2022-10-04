@@ -1,13 +1,8 @@
-* {
-  background-color: rgb(254, 251, 246);
-}
-
 main {
   display: flex;
   flex-direction: column;
   margin: 20px;
 }
-
 
 main h3 {
   font-size: 1.3em;

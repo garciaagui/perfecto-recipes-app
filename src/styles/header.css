@@ -31,6 +31,11 @@ header a {
   background-color: rgb(157, 20, 8);
 }
 
+header .favorite-title {
+  font-size: 1.4em;
+  margin: 0 -20px;
+}
+
 .container-header-btns img {
   background-color: rgb(254, 251, 246);
   border-radius: 40%;

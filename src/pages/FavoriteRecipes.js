@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import { getFavoriteRecipesLocalStorage } from '../helpers/localStorage';
 import FavoriteCard from '../components/FavoriteCard';
 import setRecipesFavorite from '../redux/actions/favoriteRecipes';
+import '../styles/favoritesrecipes.css';
 
 function FavoriteRecipes({ history, favoriteRecipes, dispatch }) {
   useEffect(() => {
@@ -30,40 +31,47 @@ function FavoriteRecipes({ history, favoriteRecipes, dispatch }) {
   }
 
   return (
-    <div>
+    <section>
       <Header history={ history } />
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ () => deleteFilters() }
-      >
-        All
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-meal-btn"
-        onClick={ () => mealFilters() }
-      >
-        Meals
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ () => drinkFilters() }
-      >
-        Drinks
-      </button>
-      {favoriteRecipes.length > 0
-        ? favoriteRecipes.map((recipe, index) => (
-          <FavoriteCard
-            key={ index }
-            recipe={ recipe }
-            index={ index }
-            history={ history }
-          />
-        ))
-        : <p>opa! não temos receitas</p>}
-    </div>
+      <section className="main-container-favorites">
+        <section className="container-btns">
+          <button
+            type="button"
+            data-testid="filter-by-all-btn"
+            className="btn btn-outline-secondary"
+            onClick={ () => deleteFilters() }
+          >
+            All
+          </button>
+          <button
+            type="button"
+            data-testid="filter-by-meal-btn"
+            className="btn btn-outline-secondary"
+            onClick={ () => mealFilters() }
+          >
+            Meals
+          </button>
+          <button
+            type="button"
+            data-testid="filter-by-drink-btn"
+            className="btn btn-outline-secondary"
+            onClick={ () => drinkFilters() }
+          >
+            Drinks
+          </button>
+        </section>
+        {favoriteRecipes.length > 0
+          ? favoriteRecipes.map((recipe, index) => (
+            <FavoriteCard
+              key={ index }
+              recipe={ recipe }
+              index={ index }
+              history={ history }
+            />
+          ))
+          : <p>opa! não temos receitas</p>}
+      </section>
+    </section>
   );
 }
 

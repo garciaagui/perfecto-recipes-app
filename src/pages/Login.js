@@ -54,7 +54,7 @@ function Login(props) {
         disabled={ isLoginBtnDisabled }
         onClick={ handleSubmit }
       >
-        Entrar
+        Enter
       </button>
 
     </form>
