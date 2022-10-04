@@ -1,5 +1,5 @@
 footer {
-  background-color: rgb(67, 180, 172);
+  background-color: rgb(222, 87, 57);
   bottom: 0;
   left: 0;
   position: fixed;
@@ -11,7 +11,7 @@ footer {
 }
 
 footer * {
-  background-color: rgb(67, 180, 172);
+  background-color: rgb(222, 87, 57);
 }
 
 footer img {
