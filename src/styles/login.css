@@ -1,0 +1,39 @@
+* {
+  background-color: rgb(254, 251, 246);
+}
+
+form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 75px;
+}
+
+form h2 {
+  color: black;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+form img {
+  margin-bottom: 20px;
+  width: 250px;
+}
+
+.container-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.container-input input:first-of-type {
+  margin-bottom: 5px;
+}
+
+.container-input input:focus {
+  border-color: rgb(157, 20, 8);
+  box-shadow: 0 0.01rem white;
+  color: #212529;
+  outline: 0;
+}

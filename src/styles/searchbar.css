@@ -1,0 +1,25 @@
+.container-search-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px 20px 5px;
+  width: 100%;
+}
+
+.container-search-bar input {
+  margin-bottom: 7px;
+}
+
+.container-radio-btns {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  justify-content: space-around;
+  margin-bottom: 7px;
+  width: 100%;
+}
+
+.container-radio-btns input {
+  margin-right: 2px;
+}

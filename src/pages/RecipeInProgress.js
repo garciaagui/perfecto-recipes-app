@@ -7,7 +7,9 @@ import ButtonShare from '../components/ButtonShare';
 import getRecipeDetails from '../redux/actions/getRecipeDetails';
 import { setInProgressRecipesLocalStorage,
   updateInProgressRecipesLocalStorage,
-  checkCheckedIngredients } from '../helpers/localStorage';
+  checkCheckedIngredients,
+  setDoneRecipesLocalStorage } from '../helpers/localStorage';
+import '../styles/recipeinprogress.css';
 
 function RecipeInProgress({ history, dispatch,
   recipeDetails, ingredientsList, ingredientsQuantity }) {
@@ -69,27 +71,76 @@ function RecipeInProgress({ history, dispatch,
     );
   }
 
+  function getDate() {
+    const today = new Date();
+    let day = today.getDate();
+    let month = today.getMonth() + 1;
+    const year = today.getFullYear();
+
+    const TEN = 10;
+
+    if (day < TEN) {
+      day = `0${day}`;
+    }
+    if (month < TEN) {
+      month = `0${month}`;
+    }
+    return `${day}/${month}/${year}`;
+  }
+
+  function setNewDoneRecipe() {
+    const verifyPathname = history.location.pathname.includes('meals');
+    const id = verifyPathname ? recipeDetails.idMeal : recipeDetails.idDrink;
+    const doneType = verifyPathname ? 'meal' : 'drink';
+    const nationality = verifyPathname ? recipeDetails.strArea : '';
+    const category = recipeDetails.strCategory;
+    const alcoholicOrNot = verifyPathname ? '' : recipeDetails.strAlcoholic;
+    const name = verifyPathname ? recipeDetails.strMeal : recipeDetails.strDrink;
+    const image = verifyPathname
+      ? recipeDetails.strMealThumb : recipeDetails.strDrinkThumb;
+    const tagValue = !Array.isArray(recipeDetails.strTags)
+      ? [recipeDetails.strTags] : recipeDetails.strTags;
+    const tags = verifyPathname ? tagValue : [];
+
+    const newDoneRecipe = {
+      id,
+      type: doneType,
+      nationality,
+      category,
+      alcoholicOrNot,
+      name,
+      image,
+      doneDate: getDate(),
+      tags,
+    };
+
+    setDoneRecipesLocalStorage(newDoneRecipe);
+  }
+
   return (
-    <section>
-      <div>
-        <h1 data-testid="recipe-title">{recipeDetails[str]}</h1>
-        <h3 data-testid="recipe-category">
-          {type === 'meals' ? recipeDetails.strCategory : recipeDetails.strAlcoholic}
-        </h3>
-        <img
-          src={ recipeDetails[strThumb] }
-          alt={ recipeDetails[str] }
-          data-testid="recipe-photo"
-          style={ { height: '360px', width: '360px' } }
-        />
-        <ul>
-          { ingredientsList
-            .map((ingredient, index) => renderIngredientsMap(ingredient, index)) }
-        </ul>
-        <p data-testid="instructions">
-          {recipeDetails.strInstructions}
-        </p>
-      </div>
+    <section className="main-container-in-progress">
+      {/* <div> */}
+      <h2>Recipe In Progress</h2>
+      <h1 data-testid="recipe-title">{recipeDetails[str]}</h1>
+      <h4 data-testid="recipe-category">
+        {type === 'meals'
+          ? `Category: ${recipeDetails.strCategory}` : recipeDetails.strAlcoholic}
+      </h4>
+      <img
+        src={ recipeDetails[strThumb] }
+        alt={ recipeDetails[str] }
+        data-testid="recipe-photo"
+      />
+      <h3>Ingredients</h3>
+      <ul>
+        { ingredientsList
+          .map((ingredient, index) => renderIngredientsMap(ingredient, index)) }
+      </ul>
+      <h3>Instructions</h3>
+      <p data-testid="instructions">
+        {recipeDetails.strInstructions}
+      </p>
+      {/* </div> */}
       <div className="useful-btns">
         {/* <button data-testid="share-btn" type="button">Share</button> */}
         <BtnFavorite history={ history } />
@@ -103,10 +154,12 @@ function RecipeInProgress({ history, dispatch,
       <button
         data-testid="finish-recipe-btn"
         type="button"
+        className="btn btn-primary"
         disabled={ !checkedIngredients.every((e) => e === true) }
-        onClick={
-          () => history.push('/done-recipes')
-        }
+        onClick={ () => {
+          setNewDoneRecipe();
+          history.push('/done-recipes');
+        } }
       >
         Finalizar
       </button>

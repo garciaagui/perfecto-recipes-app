@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import filterSearchBar from '../redux/actions/filterSearchBar';
+import '../styles/searchbar.css';
 
 function SearchBar({ history, dispatch, recipes, selectedCategory }) {
   const { location: { pathname } } = history;
@@ -36,21 +37,23 @@ function SearchBar({ history, dispatch, recipes, selectedCategory }) {
   };
 
   return (
-    <section>
+    <section className="container-search-bar">
       <input
         data-testid="search-input"
         type="text"
         placeholder="Search"
         name="searchInput"
+        className="form-control form-control-sm"
         onChange={ handleChange }
       />
-      <div>
+      <div className="container-radio-btns">
         <label htmlFor="ingredient">
           <input
             data-testid="ingredient-search-radio"
             name="searchFilter"
             type="radio"
             id="ingredient"
+            className="form-check-input"
             onChange={ handleRadioChange }
           />
           Ingredient
@@ -61,6 +64,7 @@ function SearchBar({ history, dispatch, recipes, selectedCategory }) {
             name="searchFilter"
             type="radio"
             id="name-search"
+            className="form-check-input"
             onChange={ handleRadioChange }
           />
           Name
@@ -71,6 +75,7 @@ function SearchBar({ history, dispatch, recipes, selectedCategory }) {
             name="searchFilter"
             type="radio"
             id="first-letter-search"
+            className="form-check-input"
             onChange={ handleRadioChange }
           />
           First Letter
@@ -79,6 +84,7 @@ function SearchBar({ history, dispatch, recipes, selectedCategory }) {
       <button
         onClick={ handleSearchClick }
         data-testid="exec-search-btn"
+        className="btn btn-primary btn-sm"
         type="button"
       >
         Search

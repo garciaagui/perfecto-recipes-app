@@ -1,0 +1,45 @@
+header {
+  align-items: center;
+  background-color: rgb(157, 20, 8);
+  border: 1px black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+header * {
+  background-color: rgb(157, 20, 8);
+}
+
+header h1 {
+  color: white;
+  font-weight: 900;
+  margin: 0;
+}
+
+header button {
+  border: none;
+}
+
+header img {
+  border-radius: 50%;
+  width: 50px;
+}
+
+header a {
+  background-color: rgb(157, 20, 8);
+}
+
+header .specific-titles {
+  font-size: 1.4em;
+  margin: 0 -20px;
+}
+
+.container-header-btns img {
+  background-color: rgb(254, 251, 246);
+  border-radius: 40%;
+  height: 35px;
+  padding: 5px;
+  width: 35px;
+}

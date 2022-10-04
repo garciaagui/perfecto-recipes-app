@@ -1,0 +1,30 @@
+.main-container-profile {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.main-container-profile h3 {
+  font-size: 1.3em;
+}
+
+.main-container-profile h4 {
+  color: rgb(126, 126, 126);
+  font-size: 1em;
+  margin: 0;
+}
+
+.main-container-profile .container-btns {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.main-container-profile .container-btns button {
+  margin-bottom: 10px;
+}
+
+.main-container-profile .container-btns .profile-logout-btn {
+  background-color: rgb(157, 20, 8);
+  border: none;
+}

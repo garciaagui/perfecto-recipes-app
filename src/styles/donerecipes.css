@@ -1,0 +1,77 @@
+.main-container-done {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.main-container-done a {
+  text-decoration: none;
+}
+
+.main-container-done .container-btns {
+  margin-bottom: 20px;
+}
+
+.main-container-done .container-btns button {
+  margin-right: 5px;
+}
+
+.done-card {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 5px 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  width: 250px;
+}
+
+.done-card img {
+  width: 250px;
+}
+
+.done-card h2 {
+  color: rgb(54, 53, 51);
+  font-weight: 900;
+  padding: 10px 0 0 10px;
+  width: 100%;
+}
+
+.done-card h3 {
+  color: rgb(54, 53, 51);
+  font-size: 1em;
+  margin: 0;
+  padding: 0 0 5px 10px;
+  width: 100%;
+}
+
+.done-card h4 {
+  color: rgba(54, 53, 51, 0.726);
+  font-size: 1em;
+  margin: 0;
+  padding: 0 0 5px 10px;
+  width: 100%;
+}
+
+.done-card .useful-btns {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  padding: 0 0 10px 10px;
+}
+
+.done-card .useful-btns button {
+  border: none;
+}
+
+.done-card .useful-btns img {
+  margin: 0;
+  width: 25px;
+}
+
+.done-card .useful-btns span {
+  bottom: -1px;
+  color: rgb(222, 87, 57);
+  left: 4px;
+  position: relative;
+}

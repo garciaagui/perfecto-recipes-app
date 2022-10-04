@@ -7,10 +7,9 @@ import ButtonShare from './ButtonShare';
 function FavoriteCard({ recipe, index, history }) {
   if (recipe.type === 'meal') {
     return (
-      <div>
+      <div className="favorite-card">
         <Link to={ `/meals/${recipe.id}` }>
           <img
-            width={ 250 }
             data-testid={ `${index}-horizontal-image` }
             src={ recipe.image }
             alt={ recipe.name }
@@ -22,6 +21,33 @@ function FavoriteCard({ recipe, index, history }) {
         >
           {`${recipe.nationality} - ${recipe.category}`}
         </h3>
+        <section className="useful-btns">
+          <BtnDesfavorite
+            recipe={ recipe }
+            index={ index }
+          />
+          <ButtonShare
+            id={ recipe.id }
+            index={ index }
+            history={ history }
+            type={ recipe.type }
+            dataTestId="-horizontal-share-btn"
+          />
+        </section>
+      </div>
+    );
+  } return (
+    <div className="favorite-card">
+      <Link to={ `/drinks/${recipe.id}` }>
+        <img
+          data-testid={ `${index}-horizontal-image` }
+          src={ recipe.image }
+          alt={ recipe.name }
+        />
+        <h2 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h2>
+      </Link>
+      <h3 data-testid={ `${index}-horizontal-top-text` }>{recipe.alcoholicOrNot}</h3>
+      <section className="useful-btns">
         <BtnDesfavorite
           recipe={ recipe }
           index={ index }
@@ -33,32 +59,7 @@ function FavoriteCard({ recipe, index, history }) {
           type={ recipe.type }
           dataTestId="-horizontal-share-btn"
         />
-      </div>
-    );
-  } return (
-    <div>
-      <Link to={ `/drinks/${recipe.id}` }>
-        <img
-          width={ 250 }
-          data-testid={ `${index}-horizontal-image` }
-          src={ recipe.image }
-          alt={ recipe.name }
-        />
-        <h2 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h2>
-      </Link>
-      <h3 data-testid={ `${index}-horizontal-top-text` }>{recipe.alcoholicOrNot}</h3>
-      <h4 data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</h4>
-      <BtnDesfavorite
-        recipe={ recipe }
-        index={ index }
-      />
-      <ButtonShare
-        id={ recipe.id }
-        index={ index }
-        history={ history }
-        type={ recipe.type }
-        dataTestId="-horizontal-share-btn"
-      />
+      </section>
     </div>
   );
 }

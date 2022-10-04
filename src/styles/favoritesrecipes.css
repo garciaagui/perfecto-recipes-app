@@ -1,0 +1,70 @@
+.main-container-favorites {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.main-container-favorites a {
+  text-decoration: none;
+}
+
+.main-container-favorites .container-btns {
+  margin-bottom: 20px;
+}
+
+.main-container-favorites .container-btns button {
+  margin-right: 5px;
+}
+
+.favorite-card {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 5px 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  width: 250px;
+}
+
+.favorite-card img {
+  width: 250px;
+}
+
+.favorite-card h2 {
+  color: rgb(54, 53, 51);
+  font-weight: 900;
+  margin: 0;
+  padding: 10px 0 0 10px;
+  width: 100%;
+}
+
+.favorite-card h3 {
+  color: rgba(54, 53, 51, 0.493);
+  font-size: 1.1em;
+  margin: 0;
+  padding: 0 0 5px 10px;
+  width: 100%;
+}
+
+.favorite-card .useful-btns {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  padding: 0 0 10px 10px;
+}
+
+.favorite-card .useful-btns button {
+  border: none;
+}
+
+.favorite-card .useful-btns img {
+  margin: 0;
+  width: 25px;
+}
+
+.favorite-card .useful-btns span {
+  bottom: -3px;
+  color: rgb(222, 87, 57);
+  left: 4px;
+  position: relative;
+}
