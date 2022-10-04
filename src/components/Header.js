@@ -83,6 +83,7 @@ function Header({ history }) {
   case '/profile':
     return (
       <header>
+        <img src={ logotipo } alt="small-logotipo" className="small" />
         <h1 data-testid="page-title">Profile</h1>
         <section className="container-header-btns">
           <Link to="/profile">
@@ -98,6 +99,7 @@ function Header({ history }) {
   case '/done-recipes':
     return (
       <header>
+        <img src={ logotipo } alt="small-logotipo" className="small" />
         <h1 data-testid="page-title">Done Recipes</h1>
         <section className="container-header-btns">
           <Link to="/profile">
@@ -113,6 +115,7 @@ function Header({ history }) {
   case '/favorite-recipes':
     return (
       <header>
+        <img src={ logotipo } alt="small-logotipo" className="small" />
         <h1 data-testid="page-title">Favorite Recipes</h1>
         <section className="container-header-btns">
           <Link to="/profile">

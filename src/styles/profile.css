@@ -1,0 +1,35 @@
+* {
+  background-color: rgb(254, 251, 246);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+
+main h3 {
+  font-size: 1.3em;
+}
+
+main h4 {
+  color: rgb(126, 126, 126);
+  font-size: 1em;
+  margin: 0;
+}
+
+main .container-btns {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+main .container-btns button {
+  margin-bottom: 10px;
+}
+
+main .container-btns .profile-logout-btn {
+  background-color: rgb(157, 20, 8);
+  border: none;
+}
