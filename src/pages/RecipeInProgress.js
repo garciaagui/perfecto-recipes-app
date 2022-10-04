@@ -8,6 +8,7 @@ import getRecipeDetails from '../redux/actions/getRecipeDetails';
 import { setInProgressRecipesLocalStorage,
   updateInProgressRecipesLocalStorage,
   checkCheckedIngredients } from '../helpers/localStorage';
+import '../styles/recipeinprogress.css';
 
 function RecipeInProgress({ history, dispatch,
   recipeDetails, ingredientsList, ingredientsQuantity }) {
@@ -70,26 +71,29 @@ function RecipeInProgress({ history, dispatch,
   }
 
   return (
-    <section>
-      <div>
-        <h1 data-testid="recipe-title">{recipeDetails[str]}</h1>
-        <h3 data-testid="recipe-category">
-          {type === 'meals' ? recipeDetails.strCategory : recipeDetails.strAlcoholic}
-        </h3>
-        <img
-          src={ recipeDetails[strThumb] }
-          alt={ recipeDetails[str] }
-          data-testid="recipe-photo"
-          style={ { height: '360px', width: '360px' } }
-        />
-        <ul>
-          { ingredientsList
-            .map((ingredient, index) => renderIngredientsMap(ingredient, index)) }
-        </ul>
-        <p data-testid="instructions">
-          {recipeDetails.strInstructions}
-        </p>
-      </div>
+    <section className="main-container-in-progress">
+      {/* <div> */}
+      <h2>Recipe In Progress</h2>
+      <h1 data-testid="recipe-title">{recipeDetails[str]}</h1>
+      <h4 data-testid="recipe-category">
+        {type === 'meals'
+          ? `Category: ${recipeDetails.strCategory}` : recipeDetails.strAlcoholic}
+      </h4>
+      <img
+        src={ recipeDetails[strThumb] }
+        alt={ recipeDetails[str] }
+        data-testid="recipe-photo"
+      />
+      <h3>Ingredients</h3>
+      <ul>
+        { ingredientsList
+          .map((ingredient, index) => renderIngredientsMap(ingredient, index)) }
+      </ul>
+      <h3>Instructions</h3>
+      <p data-testid="instructions">
+        {recipeDetails.strInstructions}
+      </p>
+      {/* </div> */}
       <div className="useful-btns">
         {/* <button data-testid="share-btn" type="button">Share</button> */}
         <BtnFavorite history={ history } />
@@ -103,6 +107,7 @@ function RecipeInProgress({ history, dispatch,
       <button
         data-testid="finish-recipe-btn"
         type="button"
+        className="btn btn-primary"
         disabled={ !checkedIngredients.every((e) => e === true) }
         onClick={
           () => history.push('/done-recipes')

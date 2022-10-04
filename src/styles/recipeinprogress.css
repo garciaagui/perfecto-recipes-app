@@ -1,0 +1,82 @@
+.main-container-in-progress {
+  background-color: rgba(222, 87, 57, 0.308);
+  display: flex;
+  flex-direction: column;
+  padding: 15px 10px;
+}
+
+.main-container-in-progress * {
+  background-color: rgba(222, 87, 57, 0);
+}
+
+.main-container-in-progress h1 {
+  font-size: 2em;
+  font-weight: 900;
+  margin: 0;
+}
+
+.main-container-in-progress h2 {
+  font-size: 1.3em;
+}
+
+.main-container-in-progress h3 {
+  font-weight: 900;
+}
+
+.main-container-in-progress h4 {
+  color: rgb(126, 126, 126);
+  font-size: 1.1em;
+}
+
+.main-container-in-progress img {
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.main-container-in-progress ul {
+  list-style-type: none;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.main-container-in-progress input {
+  margin-right: 8px;
+}
+
+.checked-ingredient {
+  color: grey;
+  text-decoration: line-through;
+}
+
+.main-container-in-progress p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding: 0 10px;
+  text-align: justify;
+}
+
+.main-container-in-progress .useful-btns {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.main-container-in-progress .useful-btns button {
+  border: none;
+}
+
+.main-container-in-progress .useful-btns img {
+  box-shadow: none;
+  margin: 0;
+  width: 35px;
+}
+
+.main-container-in-progress .useful-btns span {
+  bottom: -3px;
+  color: rgb(222, 87, 57);
+  left: 4px;
+  position: relative;
+}

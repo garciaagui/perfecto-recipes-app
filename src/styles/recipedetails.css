@@ -2,53 +2,55 @@
   background-color: rgb(254, 251, 246);
 }
 
-.main-container {
+.main-container-details {
   display: flex;
   flex-direction: column;
   margin: 15px 10px;
 }
 
-.main-container h1 {
+.main-container-details h1 {
   font-size: 2em;
   font-weight: 900;
   margin: 0;
 }
 
-.main-container h2 {
+.main-container-details h2 {
   font-size: 1.3em;
 }
 
-.main-container h3 {
+.main-container-details h3 {
   font-weight: 900;
 }
 
-.main-container h4 {
+.main-container-details h4 {
   color: rgb(126, 126, 126);
   font-size: 1.1em;
 }
 
-.main-container img {
+.main-container-details img {
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
   margin-bottom: 30px;
   width: 100%;
 }
 
-.main-container ul {
+.main-container-details ul {
   margin-bottom: 30px;
 }
 
-.main-container p {
+.main-container-details p {
   font-size: 16px;
   margin-bottom: 30px;
+  padding: 0 10px;
   text-align: justify;
 }
 
-.main-container iframe {
+.main-container-details iframe {
   height: 280px;
   margin-bottom: 30px;
   width: 100%;
 }
 
-.carousel {
+.main-container-details .carousel {
   align-items: stretch;
   display: flex;
   flex-flow: row nowrap;
@@ -59,7 +61,7 @@
   width: 100%;
 }
 
-.useful-btns {
+.main-container-details .useful-btns {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -67,23 +69,24 @@
   margin-bottom: 50px;
 }
 
-.useful-btns button {
+.main-container-details .useful-btns button {
   border: none;
 }
 
-.useful-btns img {
+.main-container-details .useful-btns img {
+  box-shadow: none;
   margin: 0;
   width: 35px;
 }
 
-.useful-btns span {
+.main-container-details .useful-btns span {
   bottom: 7px;
   color: rgb(222, 87, 57);
   left: 4px;
   position: relative;
 }
 
-.start-recipe-btn {
+.main-container-details .start-recipe-btn {
   bottom: 0;
   left: 18px;
   position: fixed;

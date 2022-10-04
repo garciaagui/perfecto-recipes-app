@@ -39,7 +39,7 @@ function RecipeDetails({ history, dispatch,
   }
 
   return (
-    <section className="main-container">
+    <section className="main-container-details">
       {/* <div> */}
       <h2>Recipe Details</h2>
       <h1 data-testid="recipe-title">{recipeDetails[str]}</h1>
