@@ -53,6 +53,24 @@ it('Verifica se ao atualizar a página, os itens marcados anteriormente continua
   }, { timeout: 10000 });
 });
 
+it('Verifica se ao desmarcar um ingrediente, a chave no LocalStorage é atualizada', async () => {
+  localStorage.clear();
+  renderWithRouterAndRedux(<App />, { initialEntries: [path] });
+
+  await waitFor(() => {
+    const ingredientsList = screen.getAllByTestId(/-ingredient-step/i);
+    ingredientsList.forEach((item, index) => {
+      if (index < 3) userEvent.click(item);
+    });
+    const inProgressRecipes1 = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    expect(inProgressRecipes1.meals['52977']).toEqual([0, 1, 2]);
+
+    userEvent.click(ingredientsList[0]);
+    const inProgressRecipes2 = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    expect(inProgressRecipes2.meals['52977']).toEqual([1, 2]);
+  }, { timeout: 10000 });
+});
+
 it('Verifica se redireciona para a tela de Done Recipes ao clicar no botão de finalizar, quando habilitado', async () => {
   localStorage.clear();
   const { history } = renderWithRouterAndRedux(<App />, { initialEntries: [path] });
@@ -74,14 +92,33 @@ it('Verifica se redireciona para a tela de Done Recipes ao clicar no botão de f
   });
 });
 
-it('Verifica se uma receita concluída é devidamente adicionada no Local Storage', async () => {
+it('Verifica se receitas concluídas são devidamente adicionadas no LocalStorage', async () => {
   localStorage.removeItem('doneRecipes');
-  renderWithRouterAndRedux(<App />, { initialEntries: ['/meals/52771/in-progress'] });
-  await waitFor(() => {
-    const ingredientsList = screen.getAllByTestId(/-ingredient-step/i);
-    expect(ingredientsList).toHaveLength(8);
+  const { history } = renderWithRouterAndRedux(<App />, { initialEntries: [path] });
 
-    ingredientsList.forEach((ingredient) => {
+  await waitFor(() => {
+    const mealIngredients = screen.getAllByTestId(/-ingredient-step/i);
+    expect(mealIngredients).toHaveLength(13);
+
+    mealIngredients.forEach((ingredient) => {
+      userEvent.click(ingredient);
+    });
+
+    const finishBtn = screen.getByTestId(/finish-recipe-btn/i);
+    expect(finishBtn).not.toBeDisabled();
+    userEvent.click(finishBtn);
+  }, { timeout: 10000 });
+
+  history.push('/drinks/13501');
+
+  await waitFor(() => {
+    userEvent.click(screen.queryByTestId('start-recipe-btn'));
+  });
+
+  await waitFor(() => {
+    const drinkIngredients = screen.getAllByTestId(/-ingredient-step/i);
+    expect(drinkIngredients).toHaveLength(3);
+    drinkIngredients.forEach((ingredient) => {
       userEvent.click(ingredient);
     });
 
@@ -91,7 +128,11 @@ it('Verifica se uma receita concluída é devidamente adicionada no Local Storag
   }, { timeout: 10000 });
 
   await waitFor(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/done-recipes');
     const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
-    expect(screen.getByTestId(/-horizontal-name/i)).toHaveTextContent(doneRecipes[0].name);
-  }, { timeout: 10000 });
+    screen.getAllByTestId(/-horizontal-name/i).forEach((item, index) => {
+      expect(item).toHaveTextContent(doneRecipes[index].name);
+    });
+  });
 });
