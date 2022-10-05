@@ -11,6 +11,7 @@ const nameSearchRadio = 'name-search-radio';
 const execSearchBtn = 'exec-search-btn';
 const firstLetterSearchRadio = 'first-letter-search-radio';
 
+jest.setTimeout(10000);
 it('Verifica se na tela meals o search bar funciona corretamente', async () => {
   renderWithRouterAndRedux(<App />, { initialEntries: ['/meals'] });
 
@@ -23,7 +24,7 @@ it('Verifica se na tela meals o search bar funciona corretamente', async () => {
     expect(screen.getByTestId(nameSearchRadio)).toBeInTheDocument();
     expect(screen.getByTestId(firstLetterSearchRadio)).toBeInTheDocument();
     expect(screen.getByTestId(execSearchBtn)).toBeInTheDocument();
-  });
+  }, { timeout: 10000 });
 
   const buttonSearch = screen.getByTestId(execSearchBtn);
   const searchInput = screen.getByTestId(searchInputStr);
@@ -37,16 +38,17 @@ it('Verifica se na tela meals o search bar funciona corretamente', async () => {
   await waitFor(() => {
     expect(screen.getAllByTestId(/-card-img/i)).toHaveLength(8);
     expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(8);
-  });
+  }, { timeout: 10000 });
 
   userEvent.click(nameFilterRadio);
   userEvent.click(buttonSearch);
 
   await waitFor(() => {
     expect(screen.getByTestId(/recipe-title/i)).toHaveTextContent('Tunisian Orange Cake');
-  });
+  }, { timeout: 10000 });
 });
 
+jest.setTimeout(10000);
 it('Verifica se na tela drinks o search bar funciona corretamente', async () => {
   renderWithRouterAndRedux(<App />, { initialEntries: ['/drinks'] });
 
@@ -58,7 +60,7 @@ it('Verifica se na tela drinks o search bar funciona corretamente', async () => 
     expect(screen.getByTestId(ingredientSearchRadioStr)).toBeInTheDocument();
     expect(screen.getByTestId(nameSearchRadio)).toBeInTheDocument();
     expect(screen.getByTestId(firstLetterSearchRadio)).toBeInTheDocument();
-  });
+  }, { timeout: 10000 });
 
   const buttonSearch = screen.getByTestId(execSearchBtn);
   const searchInput = screen.getByTestId(searchInputStr);
@@ -71,5 +73,5 @@ it('Verifica se na tela drinks o search bar funciona corretamente', async () => 
   await waitFor(() => {
     expect(screen.getAllByTestId(/-card-img/i)).toHaveLength(12);
     expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(12);
-  });
+  }, { timeout: 10000 });
 });

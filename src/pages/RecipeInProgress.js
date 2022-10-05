@@ -10,6 +10,7 @@ import { setInProgressRecipesLocalStorage,
   checkCheckedIngredients,
   setDoneRecipesLocalStorage } from '../helpers/localStorage';
 import '../styles/recipeinprogress.css';
+import { setNewDoneRecipe } from '../helpers/supportFunctions';
 
 function RecipeInProgress({ history, dispatch,
   recipeDetails, ingredientsList, ingredientsQuantity }) {
@@ -71,52 +72,6 @@ function RecipeInProgress({ history, dispatch,
     );
   }
 
-  function getDate() {
-    const today = new Date();
-    let day = today.getDate();
-    let month = today.getMonth() + 1;
-    const year = today.getFullYear();
-
-    const TEN = 10;
-
-    if (day < TEN) {
-      day = `0${day}`;
-    }
-    if (month < TEN) {
-      month = `0${month}`;
-    }
-    return `${day}/${month}/${year}`;
-  }
-
-  function setNewDoneRecipe() {
-    const verifyPathname = history.location.pathname.includes('meals');
-    const id = verifyPathname ? recipeDetails.idMeal : recipeDetails.idDrink;
-    const doneType = verifyPathname ? 'meal' : 'drink';
-    const nationality = verifyPathname ? recipeDetails.strArea : '';
-    const category = recipeDetails.strCategory;
-    const alcoholicOrNot = verifyPathname ? '' : recipeDetails.strAlcoholic;
-    const name = verifyPathname ? recipeDetails.strMeal : recipeDetails.strDrink;
-    const image = verifyPathname
-      ? recipeDetails.strMealThumb : recipeDetails.strDrinkThumb;
-    const tagValue = !Array.isArray(recipeDetails.strTags)
-      ? [recipeDetails.strTags] : recipeDetails.strTags;
-    const tags = verifyPathname ? tagValue : [];
-
-    const newDoneRecipe = {
-      id,
-      type: doneType,
-      nationality,
-      category,
-      alcoholicOrNot,
-      name,
-      image,
-      doneDate: getDate(),
-      tags,
-    };
-
-    setDoneRecipesLocalStorage(newDoneRecipe);
-  }
-
   return (
     <section className="main-container-in-progress">
       {/* <div> */}
@@ -157,7 +112,7 @@ function RecipeInProgress({ history, dispatch,
         className="btn btn-primary"
         disabled={ !checkedIngredients.every((e) => e === true) }
         onClick={ () => {
-          setNewDoneRecipe();
+          setNewDoneRecipe(pathname, recipeDetails, setDoneRecipesLocalStorage);
           history.push('/done-recipes');
         } }
       >

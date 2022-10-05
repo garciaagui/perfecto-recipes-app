@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouterAndRedux from '../helpers/renderWithRouterAndRedux';
 
+jest.setTimeout(20000);
 it('Verifica o conteúdo da tela de detalhes', async () => {
   renderWithRouterAndRedux(<App />, { initialEntries: ['/meals/52977'] });
 
@@ -15,7 +16,7 @@ it('Verifica o conteúdo da tela de detalhes', async () => {
     expect(screen.getByTestId(/share-btn/i)).toBeInTheDocument();
     expect(screen.getByTestId(/favorite-btn/i)).toBeInTheDocument();
     expect(screen.getByTestId(/start-recipe-btn/i)).toBeInTheDocument();
-  });
+  }, { timeout: 10000 });
 });
 
 it('Verifica a renderização da lista de ingredientes', async () => {
@@ -57,8 +58,7 @@ it('Verifica a renderização da lista de ingredientes', async () => {
       expect(ingredient.innerHTML).toContain(ingredientsList[index]);
       expect(ingredient.innerHTML).toContain(ingredientsQuantity[index]);
     });
-  });
-  // }, { timeout: 3000 });
+  }, { timeout: 10000 });
 });
 
 it('Testa se o botão de Start redireciona para a tela de Recipe in Progress', async () => {
@@ -78,12 +78,12 @@ it('Testa se o botão de Start redireciona para a tela de Recipe in Progress', a
 
   await waitFor(() => {
     userEvent.click(screen.getByTestId('start-recipe-btn'));
-  });
+  }, { timeout: 10000 });
 
   await waitFor(() => {
     const { pathname } = history.location;
     expect(pathname).toBe('/drinks/15997/in-progress');
-  });
+  }, { timeout: 10000 });
 });
 
 it('Testa se o botão de Start não existe caso a receita já tenha sido concluída', async () => {
@@ -104,5 +104,5 @@ it('Testa se o botão de Start não existe caso a receita já tenha sido conclu�
 
   await waitFor(() => {
     expect(screen.queryByTestId('start-recipe-btn')).not.toBeInTheDocument();
-  });
+  }, { timeout: 10000 });
 });

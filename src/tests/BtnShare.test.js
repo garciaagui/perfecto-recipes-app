@@ -4,7 +4,13 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouterAndRedux from '../helpers/renderWithRouterAndRedux';
 
+jest.setTimeout(20000);
 it('Testa botão de favorite', async () => {
+  const mockClipboard = {
+    writeText: jest.fn(),
+  };
+  global.navigator.clipboard = mockClipboard;
+
   const { history } = renderWithRouterAndRedux(<App />);
 
   history.push('/meals/52977');
@@ -15,17 +21,11 @@ it('Testa botão de favorite', async () => {
     );
     expect(corba).toBeInTheDocument();
 
-    const favoriteBtn = screen.getByTestId(/favorite-btn/);
-    expect(favoriteBtn).toBeInTheDocument();
-    userEvent.click(favoriteBtn);
+    const shareBtn = screen.getByTestId(/share-btn/i);
+    expect(shareBtn).toBeInTheDocument();
+    userEvent.click(shareBtn);
 
-    const favoriteRecipes1 = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    expect(favoriteRecipes1).toHaveLength(1);
-    expect(favoriteRecipes1[0].name).toBe('Corba');
-
-    userEvent.click(favoriteBtn);
-
-    const favoriteRecipes2 = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    expect(favoriteRecipes2).toHaveLength(0);
+    const { pathname } = history.location;
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(`http://localhost:3000${pathname}`);
   }, { timeout: 10000 });
 });

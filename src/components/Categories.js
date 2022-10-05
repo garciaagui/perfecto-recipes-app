@@ -16,6 +16,7 @@ function Categories({ dispatch, history, categories, selectedCategory }) {
           <section>
             <button
               type="button"
+              data-testid="hide-show-btn"
               className="btn btn-secondary btn-sm"
               onClick={ () => { setIsCategoriesOn(!isCategoriesOn); } }
             >
@@ -48,6 +49,7 @@ function Categories({ dispatch, history, categories, selectedCategory }) {
         ) : (
           <button
             type="button"
+            data-testid="hide-show-btn"
             className="btn btn-secondary btn-sm"
             onClick={ () => { setIsCategoriesOn(!isCategoriesOn); } }
           >

@@ -39,4 +39,9 @@ ButtonShare.propTypes = {
   index: PropTypes.number.isRequired,
 };
 
+// ButtonShare.defaultProps = {
+//   index: 0,
+//   type: '',
+// };
+
 export default ButtonShare;

@@ -83,14 +83,4 @@ it('Verifica se a tela Done Recipes renderiza corretamente', async () => {
     history.push(doneRecipeURL);
     expect(history.location.pathname).toBe(doneRecipeURL);
   });
-
-  expect(screen.getByTestId('0-horizontal-share-btn')).toBeInTheDocument();
-  userEvent.click(screen.getByTestId('0-horizontal-share-btn'));
-  expect(screen.getByText(/Done Recipes/i)).toBeInTheDocument();
-  /* await waitFor(() => {
-    expect(screen.getByText('Link copied!')).toBeInTheDocument();
-  }); */
-
-  /* await waitFor(() => {
-  }); */
 });

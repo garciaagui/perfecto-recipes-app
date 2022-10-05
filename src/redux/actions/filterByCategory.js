@@ -18,7 +18,7 @@ export default function filterByCategory(pathname, category) {
         },
       });
     } catch (e) {
-      global.alert('error');
+      global.alert('Categories not found');
     }
   };
 }
