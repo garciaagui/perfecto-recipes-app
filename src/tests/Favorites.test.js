@@ -4,86 +4,92 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouterAndRedux from '../helpers/renderWithRouterAndRedux';
 
-it('Testa page favorite', async () => {
-  const { history } = renderWithRouterAndRedux(<App />);
+jest.setTimeout(20000);
+it('Testa se um item favoritado na tela de Detalhes aparece na tela de Favoritos', async () => {
+  const { history } = renderWithRouterAndRedux(<App />, { initialEntries: ['/meals/52977'] });
 
-  history.push('/meals/52977');
-  waitFor(() => {
-    const corba = screen.findByRole(
+  await waitFor(() => {
+    const corba = screen.getByRole(
       'heading',
       { level: 1, name: /Corba/ },
     );
     expect(corba).toBeInTheDocument();
 
-    const favoriteBtn = screen.findByTestId(/favorite-btn/);
+    const favoriteBtn = screen.getByTestId(/favorite-btn/);
     expect(favoriteBtn).toBeInTheDocument();
     userEvent.click(favoriteBtn);
-    userEvent.click(favoriteBtn);
-  });
+  }, { timeout: 10000 });
 
   history.push('/favorite-recipes');
-  waitFor(() => {
-    const corba = screen.findByRole(
+  await waitFor(() => {
+    const corba = screen.getByRole(
       'heading',
-      { level: 1, name: /Corba/ },
+      { level: 2, name: /Corba/ },
     );
     expect(corba).toBeInTheDocument();
 
-    const favoriteBtn = screen.findByTestId(/0-horizontal-favorite-btn/);
+    const favoriteBtn = screen.getByTestId(/0-horizontal-favorite-btn/);
     expect(favoriteBtn).toBeInTheDocument();
     userEvent.click(favoriteBtn);
     expect(corba).not.toBeInTheDocument();
-  });
+  }, { timeout: 10000 });
+});
 
-  const favoriteRecipesMeals = [{
-    id: '52771',
-    type: 'meal',
-    nationality: 'Italian',
-    category: 'Vegetarian',
-    alcoholicOrNot: '',
-    name: 'Spicy Arrabiata Penne',
-    image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
-  }];
-  localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipesMeals));
+it('Testa os botões de filtro da tela de Favoritos', async () => {
+  const { history } = renderWithRouterAndRedux(<App />);
 
-  waitFor(() => {
-    const Spicy = screen.findByRole(
-      'heading',
-      { level: 1, name: /Spicy Arrabiata Penne/ },
-    );
-    expect(Spicy).toBeInTheDocument();
-  });
+  const newFavoriteRecipes = [
+    {
+      id: '52771',
+      type: 'meal',
+      nationality: 'Italian',
+      category: 'Vegetarian',
+      alcoholicOrNot: '',
+      name: 'Spicy Arrabiata Penne',
+      image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+    },
+    {
+      id: '178319',
+      type: 'drink',
+      category: 'Cocktail',
+      alcoholicOrNot: 'Alcoholic',
+      name: 'Aquamarine',
+      image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
+    }];
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoriteRecipes));
+  history.push('/favorite-recipes');
 
-  const favoriteRecipesdrink = [{
-    id: '178319',
-    type: 'drink',
-    category: 'Cocktail',
-    alcoholicOrNot: 'Alcoholic',
-    name: 'Aquamarine',
-    image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
-  }];
-  localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipesdrink));
-  waitFor(() => {
-    const Aquamarine = screen.findByRole(
-      'heading',
-      { level: 1, name: /Aquamarine/ },
-    );
-    expect(Aquamarine).toBeInTheDocument();
-  });
-  const filterall = await screen.findByTestId(/filter-by-all-btn/);
-  userEvent.click(filterall);
+  await waitFor(() => {
+    const favoriteRecipes = screen.getAllByRole('heading', { level: 2 });
+    expect(favoriteRecipes).toHaveLength(2);
 
-  const filterdrink = await screen.findByTestId(/filter-by-drink-btn/);
-  userEvent.click(filterdrink);
+    favoriteRecipes.forEach((recipe, index) => {
+      expect(recipe).toHaveTextContent(newFavoriteRecipes[index].name);
+    });
 
-  const filterMeals = await screen.findByTestId(/filter-by-meal-btn/);
-  userEvent.click(filterMeals);
+    userEvent.click(screen.getByTestId(/filter-by-meal-btn/i));
+  }, { timeout: 10000 });
 
-  userEvent.click(filterall);
+  await waitFor(() => {
+    const favoriteRecipes = screen.getByRole('heading', { level: 2 });
+    expect(favoriteRecipes).toHaveTextContent('Spicy Arrabiata Penne');
 
-  const imgdrink = await screen.findByTestId(/0-horizontal-image/);
-  expect(imgdrink).toBeInTheDocument();
+    userEvent.click(screen.getByTestId(/filter-by-drink-btn/i));
+  }, { timeout: 10000 });
 
-  const h3text1 = await screen.findByTestId(/0-horizontal-top-text/);
-  expect(h3text1).toBeInTheDocument();
+  await waitFor(() => {
+    const favoriteRecipes = screen.getByRole('heading', { level: 2 });
+    expect(favoriteRecipes).toHaveTextContent('Aquamarine');
+
+    userEvent.click(screen.getByTestId(/filter-by-all-btn/i));
+  }, { timeout: 10000 });
+
+  await waitFor(() => {
+    const favoriteRecipes = screen.getAllByRole('heading', { level: 2 });
+    expect(favoriteRecipes).toHaveLength(2);
+
+    favoriteRecipes.forEach((recipe, index) => {
+      expect(recipe).toHaveTextContent(newFavoriteRecipes[index].name);
+    });
+  }, { timeout: 10000 });
 });
