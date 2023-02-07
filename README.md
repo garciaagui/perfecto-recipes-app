@@ -13,13 +13,19 @@
     <li><a href="#como-executar-o-projeto">Como Executar o Projeto</a></li>
     <li><a href="#habilidades">Habilidades</a></li>
     <li><a href="#sobre-a-trybe">Sobre a Trybe</a></li>
-    <li><a href="#contato">Contato</a></li>
+    <li><a href="#equipe">Equipe</a></li>
   </ol>
 </details>
 
 ## Sobre o Projeto
 
 Projeto **16** do curso de Desenvolvimento Web da [Trybe][trybe-site-url].
+
+Este projeto é uma aplicação que oferece uma série de receitas de comidas e bebidas, além de permitir que a pessoa usuária salve as suas receitas favoritas e possa executá-las seguindo um passo a passo. O layout tem como foco dispositivos móveis.
+
+A base de dados utilizada provêm de duas APIs distintas: [The MealDB](https://www.themealdb.com) para as comidas e [TheCockTailDB](https://www.thecocktaildb.com/api.php) para as bebidas.
+
+O projeto foi realizado em <a href="#equipe">equipe</a>, com a adoção da metodologia ágil e dos frameworks Scrum e Kanban. O Scrum foi utilizado para gerenciar o projeto, enquanto o Kanban acompanhava as tarefas e permitia uma visualização das atividades.
 
 <!-- [![Projeto XXX][project-demo]][project-url] -->
 
@@ -62,7 +68,7 @@ git clone git@github.com:garciaagui/trybe-project-16_recipes-app.git
 2. Navegue até a raiz do projeto;
 
 ```
-npm install
+cd trybe-project-16_recipes-app
 ```
 
 3. Instale as dependências;
@@ -95,11 +101,23 @@ _"O programa conta com mais de 1.500 horas de aulas presenciais e online, aborda
 
 <br/>
 
-## Contato
+## Equipe
 
-Projeto desenvolvido por Guilherme Garcia. Seguem abaixo minhas redes sociais e meios de contato.
+### Guilherme Garcia
 
-[![Gmail][gmail-badge]][gmail-url] [![Linkedin][linkedin-badge]][linkedin-url] [![GitHub][github-badge]][github-url] [![Instagram][instagram-badge]][instagram-url]
+[![Gmail][gmail-badge]][email-guilherme] [![Linkedin][linkedin-badge]][linkedin-guilherme] [![GitHub][github-badge]][github-guilherme]
+
+### Isaque Almeida
+
+[![Gmail][gmail-badge]][email-isaque] [![Linkedin][linkedin-badge]][linkedin-isaque] [![GitHub][github-badge]][github-isaque]
+
+### Marco Túlio Vilaça Diniz
+
+[![Gmail][gmail-badge]][email-marcos] [![Linkedin][linkedin-badge]][linkedin-marcos] [![GitHub][github-badge]][github-marcos]
+
+### Ruham Leal Dos Santos Sutil
+
+[![Outlook][outlook-badge]][email-ruham] [![Linkedin][linkedin-badge]][linkedin-ruham] [![GitHub][github-badge]][github-ruham]
 
 <p align="right"><a href="#readme-top">Voltar ao topo</a></p>
 
@@ -129,10 +147,22 @@ Projeto desenvolvido por Guilherme Garcia. Seguem abaixo minhas redes sociais e 
 [redux-url]: https://redux.js.org/
 [redux-badge]: https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white
 [gmail-badge]: https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
-[gmail-url]: mailto:garciaguig@gmail.com
+[outlook-badge]: https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white
 [linkedin-badge]: https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white
-[linkedin-url]: https://www.linkedin.com/in/garciaagui/
 [github-badge]: https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white
-[github-url]: https://github.com/garciaagui
 [instagram-badge]: https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white
-[instagram-url]: https://www.instagram.com/garciaagui/
+
+<!-- Contact -->
+
+[email-guilherme]: mailto:garciaguig@gmail.com
+[linkedin-guilherme]: https://www.linkedin.com/in/garciaagui/
+[github-guilherme]: https://github.com/garciaagui
+[email-isaque]: mailto:isaque.santos@ufpe.br
+[linkedin-isaque]: https://www.linkedin.com/in/isaque-f-s-almeida/
+[github-isaque]: https://github.com/IsaqueAlmeida
+[email-marcos]: mailto:marcotuliodiniz2257@gmail.com
+[linkedin-marcos]: https://www.linkedin.com/in/marcotuliovd/
+[github-marcos]: https://github.com/marcotuliovd
+[email-ruham]: mailto:ruhamxlpro@hotmail.com
+[linkedin-ruham]: https://www.linkedin.com/in/ruham-leal/
+[github-ruham]: https://github.com/RuhamLeal
