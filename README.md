@@ -21,7 +21,7 @@
 
 Projeto **16** do curso de Desenvolvimento Web da [Trybe][trybe-site-url].
 
-Este projeto é uma aplicação que oferece uma série de receitas de comidas e bebidas, além de permitir que a pessoa usuária salve as suas receitas favoritas e possa executá-las seguindo um passo a passo. O layout tem como foco dispositivos móveis.
+Este projeto é uma aplicação que oferece uma série de receitas de comidas e bebidas, além de permitir que a pessoa usuária salve as suas receitas favoritas e possa executá-las seguindo um passo a passo. O layout tem como foco dispositivos móveis (360 x 640).
 
 A base de dados utilizada provêm de duas APIs distintas: [The MealDB](https://www.themealdb.com) para as comidas e [TheCockTailDB](https://www.thecocktaildb.com/api.php) para as bebidas.
 
@@ -109,10 +109,18 @@ cd trybe-project-16_recipes-app
 npm install
 ```
 
-4. Inicialize o projeto.
+4. Inicialize o projeto;
 
 ```
 npm run start
+```
+
+5. Ao iniciar a aplicação no navegador, ajuste a resolução de tela para `360 x 640` (360 pixels de largura por 640 pixels de altura) para uma melhor experiência;
+
+6. Para executar os testes, utilize o comando abaixo.
+
+```
+npm run test-coverage
 ```
 
 <br/>
