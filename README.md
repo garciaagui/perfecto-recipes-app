@@ -1,5 +1,3 @@
-<h1 align="center">🚧 README EM CONSTRUÇÃO 🚧</h1>
-
 <a name="readme-top"></a>
 
 <h1 align="center">Projeto App de Receitas 🧑‍🍳</h1>
@@ -128,11 +126,12 @@ npm run test-coverage
 ## Habilidades
 
 <ul>
+  <li>Utilização de componentes funcionais React.</li>
   <li>Utilização do Redux para gerencimento de estado.</li>
-  <li>Utilização da biblioteca React-Redux.</li>
   <li>Criação de Hooks customizados.</li>
+  <li>Criação de rotas utilizando React Router.</li>
+  <li>Criação de testes automatizados com RTL, de modo a garantir que a aplicação possua uma boa cobertura de testes.</li>
   <li>Aplicação dos frameworks de metodologia ágil Scrum e Kanban para gerenciamento do projeto.</li>
-  <li>Criação de testes automatizados.</li>
 </ul>
 
 <br/>
