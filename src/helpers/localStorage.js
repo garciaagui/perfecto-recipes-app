@@ -71,7 +71,6 @@ export function updateInProgressRecipesLocalStorage(id, type, index, isChecked) 
   } else {
     inProgressRecipes[type][id]
       .splice(inProgressRecipes[type][id].indexOf(index), 1);
-    // inProgressRecipes[type][id].filter((el) => el === index);
   }
   localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
 }

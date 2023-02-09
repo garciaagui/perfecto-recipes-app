@@ -12,7 +12,6 @@ function RecipeCard({ recipes, history }) {
   return (
     <section className="container-recipes">
       {recipes.length
-        // ? global.alert('Sorry, we haven\'t found any recipes for these filters.')
         && recipes.map((recipe, index) => (
           <Link
             to={ `${pathname}/${recipe[id]}` }

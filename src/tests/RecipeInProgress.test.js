@@ -3,7 +3,6 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouterAndRedux from '../helpers/renderWithRouterAndRedux';
-// import { setNewDoneRecipe } from '../helpers/supportFunctions';
 
 const path = '/meals/52977/in-progress';
 

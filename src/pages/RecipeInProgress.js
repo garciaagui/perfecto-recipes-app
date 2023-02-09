@@ -74,7 +74,6 @@ function RecipeInProgress({ history, dispatch,
 
   return (
     <section className="main-container-in-progress">
-      {/* <div> */}
       <h2>Recipe In Progress</h2>
       <h1 data-testid="recipe-title">{recipeDetails[str]}</h1>
       <h4 data-testid="recipe-category">
@@ -95,9 +94,7 @@ function RecipeInProgress({ history, dispatch,
       <p data-testid="instructions">
         {recipeDetails.strInstructions}
       </p>
-      {/* </div> */}
       <div className="useful-btns">
-        {/* <button data-testid="share-btn" type="button">Share</button> */}
         <BtnFavorite history={ history } />
         <ButtonShare
           type={ recipeDetails.type }

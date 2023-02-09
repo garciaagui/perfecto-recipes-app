@@ -40,7 +40,6 @@ function RecipeDetails({ history, dispatch,
 
   return (
     <section className="main-container-details">
-      {/* <div> */}
       <h2>Recipe Details</h2>
       <h1 data-testid="recipe-title">{recipeDetails[str]}</h1>
       <h4 data-testid="recipe-category">
@@ -63,11 +62,6 @@ function RecipeDetails({ history, dispatch,
       </p>
       { type === 'meals'
         ? (
-      // <video data-testid="video" width="320" height="240" controls>
-      //   <source src={ recipeDetails.strYoutube } type="video/webm" />
-      //   <track default kind="captions" srcLang="en" src="" />
-      //   Your browser does not support the video tag.
-      // </video>
           <iframe
             title={ `${recipeDetails[str]} video` }
             data-testid="video"
@@ -76,7 +70,6 @@ function RecipeDetails({ history, dispatch,
           />
         )
         : null}
-      {/* </div> */}
       <h3>Recommendations</h3>
       <Carousel history={ history } />
       <div className="useful-btns">
