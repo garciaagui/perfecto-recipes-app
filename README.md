@@ -33,23 +33,55 @@ O projeto foi realizado em <a href="#equipe">equipe</a>, com a adoção da metod
 
 ## Tecnologias
 
-[![HTML5][html5-badge]][html5-url]
-[![CSS3][css3-badge]][css3-url]
-[![JavaScript][javascript-badge]][javascript-url]
-[![Bootstrap][bootstrap-badge]][bootstrap-url]
-[![React][react-badge]][react-url]
-[![React Router][react-router-badge]][react-router-url]
-[![Redux][redux-badge]][redux-url]
-[![Jest][jest-badge]][jest-url]
-[![ESLint][eslint-badge]][eslint-url]
+<details>
+  <summary><strong>💻 Desenvolvimento </strong></summary><br />
+
+- [HTML5][html5-url]
+- [CSS3][css3-url]
+- [JavaScript][javascript-url]
+- [Bootstrap][bootstrap-url]
+- [React.js][react-url]
+- [React Router][react-router-url]
+- [Redux][redux-url]
+
+---
+
+</details>
+
+<details>
+  <summary><strong>🧪 Testes </strong></summary><br />
+
+- [Jest][jest-url]
+- [React Testing Library][rtl-url]
+
+---
+
+</details>
+
+<details>
+  <summary><strong>✨ Alinhamento e qualidade de código </strong></summary><br />
+
+- [ESLint][eslint-url]
+- [StyleLint][stylelint-url]
+
+---
+
+</details>
 
 <br/>
 
 ## Funcionalidades
 
-<!-- <ul>
-  <li>XXX</li>
-</ul> -->
+<ul>
+  <li>Consultar receitas de comidas e bebidas.</li>
+  <li>Pesquisar receitas pelo nome, ingredientes e primeira letra (do nome).</li>
+  <li>Filtrar receitas por categoria pré-determinadas.</li>
+  <li>Favoritar receitas.</li>
+  <li>Compartilhar receitas.</li>
+  <li>Executar um passo a passo para realizar a receita. Caso todos os passos sejam executados, a receita é considerada concluída.</li>
+  <li>Acesso à área do usuário, na qual é possível remover receitas favoritadas e receitas concluídas.</li>
+  <li>Filtrar receitas favoritadas e concluídas por comidas e bebidas.</li>
+</ul>
 
 <br/>
 
@@ -87,9 +119,13 @@ npm run start
 
 ## Habilidades
 
-<!-- <ul>
-  <li>XXX</li>
-</ul> -->
+<ul>
+  <li>Utilização do Redux para gerencimento de estado.</li>
+  <li>Utilização da biblioteca React-Redux.</li>
+  <li>Criação de Hooks customizados.</li>
+  <li>Aplicação dos frameworks de metodologia ágil Scrum e Kanban para gerenciamento do projeto.</li>
+  <li>Criação de testes automatizados.</li>
+</ul>
 
 <br/>
 
@@ -128,31 +164,29 @@ _"O programa conta com mais de 1.500 horas de aulas presenciais e online, aborda
 <!-- [project-demo]: -->
 <!-- [project-url]: -->
 
+<!-- Stacks URLs -->
+
 [bootstrap-url]: https://getbootstrap.com/
-[bootstrap-badge]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [css3-url]: https://developer.mozilla.org/en-US/docs/Web/CSS
-[css3-badge]: https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white
 [eslint-url]: https://eslint.org/
-[eslint-badge]: https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white
 [html5-url]: https://developer.mozilla.org/en-US/docs/Web/HTML
-[html5-badge]: https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
 [javascript-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
-[javascript-badge]: https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E
 [jest-url]: https://jestjs.io/
-[jest-badge]: https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white
 [react-url]: https://reactjs.org/
-[react-badge]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [react-router-url]: https://reactrouter.com/en/main
-[react-router-badge]: https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white
 [redux-url]: https://redux.js.org/
-[redux-badge]: https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white
+[rtl-url]: https://testing-library.com/docs/react-testing-library/intro/
+[stylelint-url]: https://stylelint.io/
+
+<!-- Contact Badges -->
+
 [gmail-badge]: https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
 [outlook-badge]: https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white
 [linkedin-badge]: https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white
 [github-badge]: https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white
 [instagram-badge]: https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white
 
-<!-- Contact -->
+<!-- Contact URLs -->
 
 [email-guilherme]: mailto:garciaguig@gmail.com
 [linkedin-guilherme]: https://www.linkedin.com/in/garciaagui/
