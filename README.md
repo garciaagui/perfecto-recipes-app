@@ -85,7 +85,7 @@ O projeto foi realizado em <a href="#equipe">equipe</a>, com a adoção da metod
 
 ## Como Executar o Projeto
 
-<!-- Caso deseje somente testar a aplicação, [clique aqui][project-url]. -->
+> ℹ️ Caso deseje somente testar a aplicação, [clique aqui][project-url].
 
 Para rodar o projeto localmente, siga os passos abaixo.
 
@@ -113,7 +113,7 @@ npm install
 npm run start
 ```
 
-5. Ao iniciar a aplicação no navegador, ajuste a resolução de tela para `360 x 640` (360 pixels de largura por 640 pixels de altura) para uma melhor experiência;
+5. Ao iniciar a aplicação no navegador, ajuste a resolução de tela para `360 x 640` (360 pixels de largura por 640 pixels de altura) para uma melhor experiência. Você pode utilizar o plugin [Window Resizer](https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en) para ajustar as dimensões facilmente.
 
 6. Para executar os testes, utilize o comando abaixo.
 
@@ -169,7 +169,8 @@ _"O programa conta com mais de 1.500 horas de aulas presenciais e online, aborda
 [trybe-site-url]: https://www.betrybe.com/
 
 <!-- [project-demo]: -->
-<!-- [project-url]: -->
+
+[project-url]: https://recipes-perfecto-app.vercel.app
 
 <!-- Stacks URLs -->
 
