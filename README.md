@@ -25,7 +25,7 @@ A base de dados utilizada provêm de duas APIs distintas: [The MealDB](https://w
 
 O projeto foi realizado em <a href="#equipe">equipe</a>, com a adoção da metodologia ágil e dos frameworks Scrum e Kanban. O Scrum foi utilizado para gerenciar o projeto, enquanto o Kanban acompanhava as tarefas e permitia uma visualização das atividades.
 
-<!-- [![Projeto XXX][project-demo]][project-url] -->
+[![Projeto App de Receitas][project-demo]][project-url]
 
 <br/>
 
@@ -167,9 +167,7 @@ _"O programa conta com mais de 1.500 horas de aulas presenciais e online, aborda
 <!-- MARKDOWN LINKS & IMAGES -->
 
 [trybe-site-url]: https://www.betrybe.com/
-
-<!-- [project-demo]: -->
-
+[project-demo]: ./project-demo.gif
 [project-url]: https://recipes-perfecto-app.vercel.app
 
 <!-- Stacks URLs -->
