@@ -19,12 +19,6 @@ function BtnFavorite({ history, recipeDetails }) {
   const name = verifyPathname ? recipeDetails.strMeal : recipeDetails.strDrink;
   const image = verifyPathname ? recipeDetails.strMealThumb : recipeDetails.strDrinkThumb;
 
-  // function checkFavorite() {
-  //   const local = getFavoriteRecipesLocalStorage();
-  //   const exis = local.some((receita) => receita.id === id);
-  //   setIsFavorite(exis);
-  // }
-
   useEffect(() => {
     const local = getFavoriteRecipesLocalStorage();
     const exis = local.some((receita) => receita.id === id);

@@ -1,12 +1,9 @@
 import { GET_RECIPE_DETAILS } from './types';
-// import oneMeal from '../../helpers/mocks copy/oneMeal';
 
 function filterIngredients(recipe) {
   const toSliceFilterNum = 13;
   return Object.entries(recipe)
     .filter((e) => e[0]
-      // .slice(0, toSliceFilterNum) === 'strIngredient'
-      // && e[1] !== ' ' && e[1].length && e[1])
       .slice(0, toSliceFilterNum) === 'strIngredient' && e[1] !== ' ' && e[1])
     .map((e) => e[1]);
 }
@@ -15,7 +12,6 @@ function filterIngredientsQuantity(recipe) {
   const toSliceFilterNum = 10;
   return Object.entries(recipe)
     .filter((e) => e[0]
-      // .slice(0, toSliceFilterNum) === 'strMeasure' && e[1] !== ' ' && e[1].length && e[1])
       .slice(0, toSliceFilterNum) === 'strMeasure' && e[1] !== ' ' && e[1])
     .map((e) => e[1]);
 }

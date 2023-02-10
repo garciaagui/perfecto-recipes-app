@@ -10,12 +10,6 @@ import setRecipesFavorite from '../redux/actions/favoriteRecipes';
 function BtnDesfavorite({ recipe, index, dispatch }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  // function checkFavorite() {
-  //   const local = getFavoriteRecipesLocalStorage();
-  //   const exis = local.some((receita) => receita.id === id);
-  //   setIsFavorite(exis);
-  // }
-
   useEffect(() => {
     const local = getFavoriteRecipesLocalStorage();
     const exis = local.some((receita) => receita.id === recipe.id);
