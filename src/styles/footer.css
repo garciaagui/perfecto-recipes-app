@@ -22,7 +22,7 @@ footer span {
   margin: 15px;
 }
 
-footer a, footer a:visited {
+footer a, footer a:visited, footer a:hover {
   color: black;
   font-weight: 900;
   text-decoration: none;
