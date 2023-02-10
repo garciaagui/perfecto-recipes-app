@@ -7,7 +7,7 @@ import '../styles/categories.css';
 
 function Categories({ dispatch, history, categories, selectedCategory }) {
   const { location: { pathname } } = history;
-  const [isCategoriesOn, setIsCategoriesOn] = useState(true);
+  const [isCategoriesOn, setIsCategoriesOn] = useState(false);
 
   return (
     <section className="container-categories">
