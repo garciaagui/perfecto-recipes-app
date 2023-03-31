@@ -1,38 +1,38 @@
 <a name="readme-top"></a>
 
-<h1 align="center">Projeto App de Receitas 🧑‍🍳</h1>
+<h1 align="center">Project Recipes App (Perfecto) 🧑‍🍳</h1>
 
-<details>
-  <summary>Sumário</summary>
-  <ol>
-    <li><a href="#sobre-o-projeto">Sobre o Projeto</a></li>
-    <li><a href="#tecnologias">Tecnologias</a></li>
-    <li><a href="#funcionalidades">Funcionalidades</a></li>
-    <li><a href="#como-executar-o-projeto">Como Executar o Projeto</a></li>
-    <li><a href="#habilidades">Habilidades</a></li>
-    <li><a href="#sobre-a-trybe">Sobre a Trybe</a></li>
-    <li><a href="#equipe">Equipe</a></li>
-  </ol>
-</details>
+> [🇧🇷 Clique aqui para acessar a versão em português.](README_pt-br.md)
 
-## Sobre o Projeto
+## Summary
 
-Projeto **16** do curso de Desenvolvimento Web da [Trybe][trybe-site-url].
+<ol>
+  <li><a href="#description">Description</a></li>
+  <li><a href="#technologies">Technologies</a></li>
+  <li><a href="#features">Features</a></li>
+  <li><a href="#how-to-run">How to Run</a></li>
+  <li><a href="#about-trybe">About Trybe</a></li>
+  <li><a href="#development-team">Development Team</a></li>
+</ol>
 
-Este projeto é uma aplicação que oferece uma série de receitas de comidas e bebidas, além de permitir que a pessoa usuária salve as suas receitas favoritas e possa executá-las seguindo um passo a passo. O layout tem como foco dispositivos móveis (360 x 640).
+## Description
 
-A base de dados utilizada provêm de duas APIs distintas: [The MealDB](https://www.themealdb.com) para as comidas e [TheCockTailDB](https://www.thecocktaildb.com/api.php) para as bebidas.
+**16th project** of the [Trybe][trybe-site-url] Web Development course.
 
-O projeto foi realizado em <a href="#equipe">equipe</a>, com a adoção da metodologia ágil e dos frameworks Scrum e Kanban. O Scrum foi utilizado para gerenciar o projeto, enquanto o Kanban acompanhava as tarefas e permitia uma visualização das atividades.
+This project is an application that offers a variety of food and drink recipes, allowing the user to save their favorite recipes and follow a step-by-step guide to execute them. The layout focuses on mobile devices (360 x 640).
 
-[![Projeto App de Receitas][project-demo]][project-url]
+The database used comes from two distinct APIs: [The MealDB](https://www.themealdb.com) for food recipes and [TheCockTailDB](https://www.thecocktaildb.com/api.php) for drinks recipes.
+
+The project was developed by a <a href="#development-team">team</a> using agile methodology and Scrum and Kanban frameworks. Scrum was used to manage the project, while Kanban tracked tasks and allowed visualization of activities.
+
+[![Project Recipes App][project-demo]][project-url]
 
 <br/>
 
-## Tecnologias
+## Technologies
 
 <details>
-  <summary><strong>💻 Desenvolvimento </strong></summary><br />
+  <summary><strong>💻 Development </strong></summary><br />
 
 - [HTML5][html5-url]
 - [CSS3][css3-url]
@@ -47,7 +47,7 @@ O projeto foi realizado em <a href="#equipe">equipe</a>, com a adoção da metod
 </details>
 
 <details>
-  <summary><strong>🧪 Testes </strong></summary><br />
+  <summary><strong>🧪 Testing </strong></summary><br />
 
 - [Jest][jest-url]
 - [React Testing Library][rtl-url]
@@ -57,7 +57,7 @@ O projeto foi realizado em <a href="#equipe">equipe</a>, com a adoção da metod
 </details>
 
 <details>
-  <summary><strong>✨ Alinhamento e qualidade de código </strong></summary><br />
+  <summary><strong>✨ Code alignment and quality </strong></summary><br />
 
 - [ESLint][eslint-url]
 - [StyleLint][stylelint-url]
@@ -68,54 +68,54 @@ O projeto foi realizado em <a href="#equipe">equipe</a>, com a adoção da metod
 
 <br/>
 
-## Funcionalidades
+## Features
 
 <ul>
-  <li>Consultar receitas de comidas e bebidas.</li>
-  <li>Pesquisar receitas pelo nome, ingredientes e primeira letra (do nome).</li>
-  <li>Filtrar receitas por categoria pré-determinadas.</li>
-  <li>Favoritar receitas.</li>
-  <li>Compartilhar receitas.</li>
-  <li>Executar um passo a passo para realizar a receita. Caso todos os passos sejam executados, a receita é considerada concluída.</li>
-  <li>Acesso à área do usuário, na qual é possível remover receitas favoritadas e receitas concluídas.</li>
-  <li>Filtrar receitas favoritadas e concluídas por comidas e bebidas.</li>
+  <li>Browse through food and drink recipes.</li>
+  <li>Search for recipes by name, ingredient, or first letter (of the name).</li>
+  <li>Filter recipes by predetermined categories.</li>
+  <li>Favorite recipes.</li>
+  <li>Share recipes.</li>
+  <li>Follow a step-by-step guide to make the recipe. If all steps are completed, the recipe is considered done.</li>
+  <li>Access the user area, where it is possible to check and remove favorited and completed recipes.</li>
+  <li>Filter favorited and completed recipes by food and drinks.</li>
 </ul>
 
 <br/>
 
-## Como Executar o Projeto
+## How to Run
 
-> ℹ️ Caso deseje somente testar a aplicação, [clique aqui][project-url].
+> ℹ️ If you only want to test the application, [click here][project-url].
 
-Para rodar o projeto localmente, siga os passos abaixo.
+To run the project locally, follow the steps below.
 
-1. Clone o repositório;
-
-```
-git clone git@github.com:garciaagui/trybe-project-16_recipes-app.git
-```
-
-2. Navegue até a raiz do projeto;
+1. Clone the repository;
 
 ```
-cd trybe-project-16_recipes-app
+git clone git@github.com:garciaagui/perfecto-recipes-app.git
 ```
 
-3. Instale as dependências;
+2. Navigate to the project root directory;
+
+```
+cd perfecto-recipes-app/
+```
+
+3. Install the dependencies;
 
 ```
 npm install
 ```
 
-4. Inicialize o projeto;
+4. Start the project;
 
 ```
 npm run start
 ```
 
-5. Ao iniciar a aplicação no navegador, ajuste a resolução de tela para `360 x 640` (360 pixels de largura por 640 pixels de altura) para uma melhor experiência. Você pode utilizar o plugin [Window Resizer](https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en) para ajustar as dimensões facilmente.
+5. When the application starts in the browser, adjust the screen resolution to 360 x 640 (360 pixels wide by 640 pixels tall) for a better experience. You can use (for Google Chrome) the [Window Resizer](https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en) plugin to easily adjust the dimensions.
 
-6. Para executar os testes, utilize o comando abaixo.
+6. To run the tests, use the command below.
 
 ```
 npm run test-coverage
@@ -123,46 +123,27 @@ npm run test-coverage
 
 <br/>
 
-## Habilidades
+## About Trybe
 
-<ul>
-  <li>Utilização de componentes funcionais React.</li>
-  <li>Utilização do Redux para gerencimento de estado.</li>
-  <li>Criação de Hooks customizados.</li>
-  <li>Criação de rotas utilizando React Router.</li>
-  <li>Criação de testes automatizados com RTL, de modo a garantir que a aplicação possua uma boa cobertura de testes.</li>
-  <li>Aplicação dos frameworks de metodologia ágil Scrum e Kanban para gerenciamento do projeto.</li>
-</ul>
+_"[Trybe][trybe-site-url] is a future school for anyone who wants to improve their lives and build a successful career in technology, where the person only pays when they get a good job."_
+
+_"The program features over 1,500 hours of online classes covering introduction to software development, front-end, back-end, computer science, software engineering, agile methodologies, and behavioral skills."_
 
 <br/>
 
-## Sobre a Trybe
+## Development Team
 
-_"A [Trybe][trybe-site-url] é uma escola do futuro para qualquer pessoa que queira melhorar de vida e construir uma carreira de sucesso em tecnologia, onde a pessoa só paga quando conseguir um bom trabalho."_
+Check out the social networks and means of contact of the team members responsible for the development of this project 👇
 
-_"O programa conta com mais de 1.500 horas de aulas presenciais e online, aborda introdução ao desenvolvimento de software, front-end, back-end, ciência da computação, engenharia de software, metodologias ágeis e habilidades comportamentais._"
+- Guilherme Garcia | [Email][email-guilherme] - [LinkedIn][linkedin-guilherme] - [GitHub][github-guilherme]
 
-<br/>
+- Isaque Almeida | [Email][email-isaque] - [LinkedIn][linkedin-isaque] - [GitHub][github-isaque]
 
-## Equipe
+- Marco Túlio Vilaça Diniz | [Email][email-marcos] - [LinkedIn][linkedin-marcos] - [GitHub][github-marcos]
 
-### Guilherme Garcia
+- Ruham Leal Dos Santos Sutil | [Email][email-ruham] - [LinkedIn][linkedin-ruham] - [GitHub][github-ruham]
 
-[![Gmail][gmail-badge]][email-guilherme] [![Linkedin][linkedin-badge]][linkedin-guilherme] [![GitHub][github-badge]][github-guilherme]
-
-### Isaque Almeida
-
-[![Gmail][gmail-badge]][email-isaque] [![Linkedin][linkedin-badge]][linkedin-isaque] [![GitHub][github-badge]][github-isaque]
-
-### Marco Túlio Vilaça Diniz
-
-[![Gmail][gmail-badge]][email-marcos] [![Linkedin][linkedin-badge]][linkedin-marcos] [![GitHub][github-badge]][github-marcos]
-
-### Ruham Leal Dos Santos Sutil
-
-[![Outlook][outlook-badge]][email-ruham] [![Linkedin][linkedin-badge]][linkedin-ruham] [![GitHub][github-badge]][github-ruham]
-
-<p align="right"><a href="#readme-top">Voltar ao topo</a></p>
+<p align="right"><a href="#readme-top">Back to top</a></p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
